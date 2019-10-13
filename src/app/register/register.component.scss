@@ -1,0 +1,23 @@
+.main-div{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .register-card {
+    width: 22em;
+    height: 26em;
+  }
+
+  .register {
+    margin-left: 20px;
+
+    .input-wrapper {
+      width: 20em;
+    }
+  }
+
+  .action-container {
+    margin-left: 20px;
+  }
+}
