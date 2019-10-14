@@ -1,0 +1,35 @@
+.main-div{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .login-card {
+      width: 22em;
+      height: 26em;
+      background-color: #f5f3f34d;
+    }
+  
+    .login {
+      margin-left: 20px;
+      margin-top: 2em;
+  
+      .input-wrapper {
+        width: 20em;
+      }
+    }
+  
+    .action-container {
+      margin-top: 4em;
+      text-align: center;
+
+      .login-button {
+        width: 17em;
+      }
+
+      .register-link {
+        margin-top: 0.5em;
+        font-size: 0.8em;
+      }
+    }
+  }
