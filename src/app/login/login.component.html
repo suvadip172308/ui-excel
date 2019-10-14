@@ -11,14 +11,21 @@
           <tr class="row">
             <td>
               <mat-form-field class="input-wrapper">
-                <input matInput placeholder="Username" name="username" required>
+                <input matInput [(ngModel)]="userName"
+                  placeholder="Username"
+                  name="username" 
+                  required>
               </mat-form-field>
             </td>
           </tr>
           <tr class="row">
             <td>
               <mat-form-field class="input-wrapper">
-                <input matInput placeholder="Password" type="password" name="password" required>
+                <input matInput [(ngModel)]="password"
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  required>
               </mat-form-field>
             </td>
           </tr>
