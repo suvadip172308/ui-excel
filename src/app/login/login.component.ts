@@ -11,9 +11,18 @@ export class LoginComponent implements OnInit {
   userName = "";
   password = "";
 
-  constructor(api: ApiService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+  }
+
+  doLogin() {
+    const body = {
+      userName: this.userName,
+      password: this.password
+    };
+  
+    this.apiService.postCall('/auth', body);
   }
 
 }

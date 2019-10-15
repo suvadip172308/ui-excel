@@ -33,9 +33,10 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="action-container">
-      <button mat-raised-button color="accent" class="login-button">
-        Login
-      </button>
+      <button mat-raised-button
+        color="accent"
+        class="login-button"
+        (click)="doLogin()">Login</button>
       <div class="register-link">
         <span>New User &nbsp;</span>
         <a routerLink="/register">Register Here</a>
