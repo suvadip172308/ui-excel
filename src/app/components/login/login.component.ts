@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
 import {CommonService } from '../../services/common/common.service';
+import { Login } from '../../models/common.model';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
     private apiService: ApiService,
     private authService: AuthService,
     private commonService: CommonService,
+    private _router: Router,
   ) { }
 
   ngOnInit() {
@@ -38,11 +41,19 @@ export class LoginComponent implements OnInit {
       password  // make it encrypted later
     };
   
-    this.apiService.postCall('/auth', body).subscribe((res: HttpResponse<any>) => {
+    this.apiService.postCall('/auth', body).subscribe((res: HttpResponse<Login>) => {
       const token = res.headers.get('Authorization');
-      if (token) this.authService.setToken(token);
+      const body = res.body;
+
+      if (token) {
+        this.authService.setToken(token);
+        this.authService.setLocalStore('username', body.userName);
+        this.authService.setLocalStore('name', body.name);
+        this._router.navigate(['dashboard']);
+      }
+
     }, (err) => {
-      this.commonService.openSnackBar('Invalid Username or Password');
+      return this.commonService.openSnackBar('Invalid Username or Password');
     });
   }
 

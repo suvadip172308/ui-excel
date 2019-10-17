@@ -12,4 +12,16 @@ export class AuthService {
   setToken(token: string) {
     localStorage.setItem('authorization', token || '');
   }
+
+  isTokenAvailable() {
+    return !!this.getToken();
+  }
+
+  setLocalStore(prop: string, data: string) {
+    localStorage.setItem(prop, data);
+  }
+
+  getLocalStore(prop: string) {
+    return localStorage.getItem(prop);
+  }
 }
