@@ -13,6 +13,10 @@ export class AuthService {
     localStorage.setItem('authorization', token || '');
   }
 
+  removeToken() {
+    return localStorage.removeItem('authorization');
+  }
+
   isTokenAvailable() {
     return !!this.getToken();
   }
@@ -23,5 +27,9 @@ export class AuthService {
 
   getLocalStore(prop: string) {
     return localStorage.getItem(prop);
+  }
+
+  removeLocalStore(prop: string) {
+    return localStorage.removeItem(prop);
   }
 }

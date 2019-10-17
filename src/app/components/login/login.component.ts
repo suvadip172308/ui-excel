@@ -15,7 +15,6 @@ import { Login } from '../../models/common.model';
 export class LoginComponent implements OnInit {
   userName = "";
   password = "";
-  durationInSeconds = 5;
 
   constructor(
     private apiService: ApiService,
@@ -47,7 +46,7 @@ export class LoginComponent implements OnInit {
 
       if (token) {
         this.authService.setToken(token);
-        this.authService.setLocalStore('username', body.userName);
+        this.authService.setLocalStore('userName', body.userName);
         this.authService.setLocalStore('name', body.name);
         this._router.navigate(['dashboard']);
       }

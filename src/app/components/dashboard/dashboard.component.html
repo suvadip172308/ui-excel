@@ -1,1 +1,13 @@
-<h1>Welcome to Dashboard</h1>
+<div class="dashboard-container">
+  <mat-toolbar>
+    <span class="title">Excel</span>
+    <span class="name">{{name}}</span>
+    <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon class="icon-account">account_box</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item
+       (click)="onLogout()">Log Out</button>
+    </mat-menu>
+  </mat-toolbar>
+</div>
