@@ -14,13 +14,15 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
       useClass: TokenInterceptor,
       multi: true
     }
+  ],
+  entryComponents: [
+    SpinnerComponent
   ],
   bootstrap: [AppComponent]
 })

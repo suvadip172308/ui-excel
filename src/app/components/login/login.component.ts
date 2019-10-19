@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
-import {CommonService } from '../../services/common/common.service';
+import { SpinnerService } from '../../services/spinner/spinner.service';
+import { CommonService } from '../../services/common/common.service';
 import { Login } from '../../models/common.model';
 
 @Component({
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     private apiService: ApiService,
     private authService: AuthService,
     private commonService: CommonService,
+    private spinnerService: SpinnerService,
     private _router: Router,
   ) { }
 
@@ -39,7 +41,9 @@ export class LoginComponent implements OnInit {
       userName,
       password  // make it encrypted later
     };
-  
+    
+    this.spinnerService.open();
+
     this.apiService.postCall('/auth', body).subscribe((res: HttpResponse<Login>) => {
       const token = res.headers.get('Authorization');
       const body = res.body;
@@ -51,7 +55,10 @@ export class LoginComponent implements OnInit {
         this._router.navigate(['dashboard']);
       }
 
+      this.spinnerService.close();
+
     }, (err) => {
+      this.spinnerService.close();
       return this.commonService.openSnackBar('Invalid Username or Password');
     });
   }
