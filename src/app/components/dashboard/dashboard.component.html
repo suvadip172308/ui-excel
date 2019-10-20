@@ -2,8 +2,10 @@
   <mat-toolbar>
     <span class="title">Excel</span>
     <span class="name">{{name}}</span>
-    <button mat-button [matMenuTriggerFor]="menu">
-        <mat-icon class="icon-account">account_box</mat-icon>
+    <button mat-button
+            class="logout-menu"
+            [matMenuTriggerFor]="menu">
+        <mat-icon class="icon-account">exit_to_app</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item

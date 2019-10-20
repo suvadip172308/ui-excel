@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 
 import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
@@ -44,7 +45,9 @@ export class LoginComponent implements OnInit {
     
     this.spinnerService.open();
 
-    this.apiService.postCall('/auth', body).subscribe((res: HttpResponse<Login>) => {
+    this.apiService.postCall('/auth', body).pipe(
+      finalize(() => this.spinnerService.close())
+    ).subscribe((res: HttpResponse<Login>) => {
       const token = res.headers.get('Authorization');
       const body = res.body;
 
@@ -54,11 +57,7 @@ export class LoginComponent implements OnInit {
         this.authService.setLocalStore('name', body.name);
         this._router.navigate(['dashboard']);
       }
-
-      this.spinnerService.close();
-
     }, (err) => {
-      this.spinnerService.close();
       return this.commonService.openSnackBar('Invalid Username or Password');
     });
   }

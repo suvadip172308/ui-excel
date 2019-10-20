@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -10,7 +11,8 @@ import { AuthService } from '../../services/auth/auth.service';
 export class DashboardComponent implements OnInit {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -25,5 +27,7 @@ export class DashboardComponent implements OnInit {
     this.authService.removeToken();
     this.authService.removeLocalStore('userName');
     this.authService.removeLocalStore('name');
+
+    this._router.navigate(['login']);
   }
 }
