@@ -1,0 +1,26 @@
+.header-container {
+    .header-title {
+      font-weight: lighter;
+    }
+
+    .info-container {
+      width: 100%;
+      text-align: right;
+
+      .name {
+        width: 100%;
+        text-align: right;
+        font-weight: lighter;
+        font-size: 15px;
+      }
+    
+      .logout-menu {
+        padding: 0 10px;
+        min-width: 3em;
+      }
+
+      .icon-account {
+        color: #f36868
+      }
+    }
+  }

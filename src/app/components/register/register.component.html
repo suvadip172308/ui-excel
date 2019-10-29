@@ -2,7 +2,7 @@
   <mat-card class="register-card">
     <mat-card-header>
       <div class="register-header">
-        <h1>Excel</h1>
+        <h1>Register</h1>
       </div>
     </mat-card-header>
     <mat-card-content>
@@ -11,47 +11,94 @@
           <tr class="row">
             <td>
               <mat-form-field class="input-wrapper">
-                <input matInput placeholder="Username" name="username" required>
+                <input matInput 
+                       placeholder="Username"
+                       name="username"
+                       [value]="userName"
+                       (input)="onInput($event.target.value, 'userName')"
+                       required>
               </mat-form-field>
+            </td>
+            <td *ngIf="displayIcon"
+                class="icon-wrapper">
+              <mat-icon>{{getIcon(isUserNameValid)}}</mat-icon>
             </td>
           </tr>
           <tr class="row">
             <td>
               <mat-form-field class="input-wrapper">
-                <input matInput placeholder="Name" name="name" required>
+                <input matInput
+                       placeholder="Name"
+                       name="name"
+                       [value]="name"
+                       (input)="onInput($event.target.value, 'name')"
+                       required>
               </mat-form-field>
+            </td>
+            <td *ngIf="displayIcon"
+                class="icon-wrapper">
+              <mat-icon>{{getIcon(isNameValid)}}</mat-icon>
             </td>
           </tr>
           <tr class="row">
             <td>
               <mat-form-field class="input-wrapper">
-                <input matInput placeholder="Password" type="password" name="password" required>
+                <input matInput
+                       placeholder="Password"
+                       type="password"
+                       name="password"
+                       [value]="password"
+                       (input)="onInput($event.target.value, 'password')"
+                       required>
               </mat-form-field>
+            </td>
+            <td *ngIf="displayIcon"
+                class="icon-wrapper">
+              <mat-icon>{{getIcon(isPasswordValid)}}</mat-icon>
             </td>
           </tr>
           <tr class="row">
               <td>
                 <mat-form-field class="input-wrapper">
-                  <input matInput placeholder="Confirm Password" type="password" name="password" required>
+                  <input matInput
+                         placeholder="Confirm Password"
+                         type="password"
+                         name="confirm-password"
+                         [value]="confirmPassword"
+                         (input)="onInput($event.target.value, 'confirmPassword')"
+                         required>
                 </mat-form-field>
+              </td>
+              <td *ngIf="displayIcon"
+                  class="icon-wrapper">
+                <mat-icon>{{getIcon(isPasswordValid && isConfirmPassword)}}</mat-icon>
               </td>
             </tr>
           <tr class="row">
             <td>
               <mat-form-field class="input-wrapper">
-                <input matInput placeholder="Company/Companies" name="companies" required>
+                <input matInput
+                       placeholder="Company/Companies (accept comma or space)"
+                       name="companies"
+                       [value]="companies"
+                       (input)="onInput($event.target.value, 'companies')"
+                       required>
               </mat-form-field>
+            </td>
+            <td *ngIf="displayIcon"
+                class="icon-wrapper">
+              <mat-icon>{{getIcon(isCompaniesValid)}}</mat-icon>
             </td>
           </tr>
         </table>
       </div>
     </mat-card-content>
     <mat-card-actions class="action-container">
-      <button mat-raised-button>Reset</button>
+      <button mat-raised-button
+              (click)="onReset()">Reset</button>
       <button mat-raised-button color="accent"
-        class="login-button">
-        Register
-      </button>
+              class="login-button"
+              (click)="onRegister()">Register</button>
     </mat-card-actions>
   </mat-card>
 <div>

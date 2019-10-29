@@ -1,0 +1,15 @@
+<div class="header-container">
+  <mat-toolbar>
+    <div class="header-title">Excel</div>
+    <div *ngIf="isLoggedIn"
+         class="info-container">
+      <span class="name">{{name}}</span>
+      <button mat-button class="logout-menu" [matMenuTriggerFor]="menu">
+        <mat-icon class="icon-account">exit_to_app</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onLogout()">Log Out</button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</div>

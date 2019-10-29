@@ -17,17 +17,4 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  get name() {
-    const name = this.authService.getLocalStore('name');
-    return `Hi ${name}`;
-  }
-
-  onLogout() {
-    this.authService.removeToken();
-    this.authService.removeLocalStore('userName');
-    this.authService.removeLocalStore('name');
-
-    this._router.navigate(['login']);
-  }
 }

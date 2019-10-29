@@ -5,7 +5,7 @@
   align-items: center;
 
   .register-card {
-    width: 22em;
+    width: 23em;
     height: 31em;;
     background-color: #f5f3f34d;
   }
@@ -13,8 +13,22 @@
   .register {
     margin-left: 20px;
 
-    .input-wrapper {
-      width: 20em;
+    .register-table {
+      .input-wrapper {
+        width: 20em;
+      }
+
+      .icon-wrapper {
+        padding-left: 1em;
+      }
+
+      .hide-icon {
+        display: none;
+      }
+
+      .show-icon {
+        display: inline;
+      }
     }
   }
 
