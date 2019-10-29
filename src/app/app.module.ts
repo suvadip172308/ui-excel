@@ -15,6 +15,8 @@ import { LoginComponent } from './components/login/login.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -31,6 +31,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {OverlayModule} from '@angular/cdk/overlay';
+import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    OverlayModule
+    OverlayModule,
+    MatRippleModule
   ],
   exports: [
     MatCheckboxModule,
@@ -99,7 +101,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    OverlayModule
+    OverlayModule,
+    MatRippleModule
   ]
 })
 
