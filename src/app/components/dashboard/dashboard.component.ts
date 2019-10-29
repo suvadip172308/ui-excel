@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  isAdmin = false;
 
   constructor(
     private authService: AuthService,
@@ -16,5 +17,6 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isAdmin = this.authService.isAdmin();
   }
 }
