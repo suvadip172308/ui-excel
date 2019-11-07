@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { MaterialModule } from './module/material.module';
 import { RegisterComponent } from './components/register/register.component';
@@ -40,6 +41,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     MaterialModule,
     FormsModule,
     MatIconModule,
+    NgxDatatableModule
   ],
   providers: [
     {
