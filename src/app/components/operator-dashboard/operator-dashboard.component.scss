@@ -1,12 +1,10 @@
-.board-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .retailer-wrapper {
-    .retailer-card {
-      width: 20em;
-      height: 54vh;
+.op-board-container {
+  :host {
+    display: block;
+    width: 100%;
+    height: 100%;
+    .ngx-datatable {
+      height: 100vh;
     }
   }
 }
