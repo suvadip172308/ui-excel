@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, of, pipe } from "rxjs";
-import { delay, map, take } from 'rxjs/operators';
 
-import { Page } from '../../shared/classes/page';
-import { Transaction } from '../../models/common.model';
-import { PagedData } from '../../shared/classes/page-data';
 import { ApiService } from '../api/api.service';
 
 @Injectable({
