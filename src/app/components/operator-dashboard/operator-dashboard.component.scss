@@ -1,7 +1,5 @@
 /*
-@import '~@swimlane/ngx-datatable/index.css';
-@import '~@swimlane/ngx-datatable/themes/material.scss';
-@import '~@swimlane/ngx-datatable/assets/icons.css';
+
 */
 
 .op-board-container {
@@ -13,6 +11,8 @@
   width: 100%;
   height: 100%;
   .ngx-datatable {
-    height: 100vh;
+    width: 96%;
+    margin: 0 auto;
+    top: 25px;
   }
 }

@@ -8,11 +8,11 @@
         [columnMode]="'force'"
         [headerHeight]="50"
         [loadingIndicator]="isLoading"
-        [scrollbarV]="true"
-        [footerHeight]="50"
-        [rowHeight]="50"
+        [footerHeight]="'auto'"
+        [rowHeight]="'auto'"
         [externalPaging]="true"
         [count]="page.totalElements"
+        [limit]= "page.pageSize"
         [offset]="page.pageNumber"
         (page)='setPage($event)'>
       </ngx-datatable>

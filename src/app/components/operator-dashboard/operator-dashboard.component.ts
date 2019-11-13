@@ -18,25 +18,7 @@ export class OperatorDashboardComponent implements OnInit {
     this.setPage({offset: 0, pageSize: 10});
   }
 
-  ngOnInit() {
-    if (this.table.bodyComponent) {
-      return;
-    }
-
-    this.table.bodyComponent.updatePage = function(direction: string): void {
-      let offset = this.indexes.first / this.pageSize;
-
-      if (direction === 'up') {
-        offset = Math.ceil(offset);
-      } else if (direction === 'down') {
-        offset = Math.floor(offset);
-      }
-
-      if (direction !== undefined && !isNaN(offset)) {
-        this.page.emit({ offset });
-      }
-    }
-  }
+  ngOnInit() {}
 
   setPage(pageInfo) {
     this.isLoading = true;
@@ -46,18 +28,19 @@ export class OperatorDashboardComponent implements OnInit {
     this.commonService.getResults(this.page).subscribe(pagedData => {
       this.page = pagedData.page;
 
-      let rows = this.rows;
-      if (rows.length !== pagedData.page.totalElements) {
-        rows = Array.apply(null, Array(pagedData.page.totalElements));
-        rows = rows.map((x, i) => this.rows[i]);
-      }
+      // let rows = this.rows;
+      // if (rows.length !== pagedData.page.totalElements) {
+      //   rows = Array.apply(null, Array(pagedData.page.totalElements));
+      //   rows = rows.map((x, i) => this.rows[i]);
+      // }
 
-      // calc start
-      const start = this.page.pageNumber * this.page.size;
+      // // calc start
+      // const start = this.page.pageNumber * this.page.size;
 
-      // set rows to our new rows
-      pagedData.data.map((x, i) => rows[i + start] = x);
-      this.rows = rows;
+      // // set rows to our new rows
+      // pagedData.data.map((x, i) => rows[i + start] = x);
+      // this.rows = rows;
+      this.rows = pagedData.data;
       this.isLoading = false;
     });
   }
