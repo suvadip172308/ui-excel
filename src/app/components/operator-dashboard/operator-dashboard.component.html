@@ -1,40 +1,20 @@
-<div class="board-container">
-  <div class="retailer-wrapper">
-    <mat-card matRipple class="retailer-card">
-      <mat-card-header>
-        <div class="card-header">
-          <h3>Retailer List</h3>
-        </div>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="card-content">
-          Card Content
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <div class="card-actions">
-          Card Action
-        </div>
-      </mat-card-actions>
-    </mat-card>
+<div class="op-board-container">
+  <div>
+    <ngx-datatable
+        #dataTable
+        class="material"
+        [rows]="rows"
+        [columns]="columns"
+        [columnMode]="'forced'"
+        [headerHeight]="50"
+        [loadingIndicator]="isLoading"
+        [footerHeight]="'auto'"
+        [rowHeight]="'auto'"
+        [externalPaging]="true"
+        [count]="totalElements"
+        [limit]="pageSize"
+        [offset]="pageNumber"
+        (page)='setPage($event)'>
+      </ngx-datatable>
   </div>
-  <div class="retailer-wrapper">
-      <mat-card matRipple class="retailer-card">
-        <mat-card-header>
-          <div class="card-header">
-            <h3>Retailer List</h3>
-          </div>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="card-content">
-            Card Content
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <div class="card-actions">
-            Card Action
-          </div>
-        </mat-card-actions>
-      </mat-card>
-    </div>
 </div>
