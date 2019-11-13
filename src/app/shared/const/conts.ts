@@ -6,6 +6,8 @@ export const SPINNER_DEFAULT_CONFIG: SpinnerConfig = {
   panelClass: 'spinner-display-panel'
 }
 
+export const PAGE_SIZE: number = 10;
+
 export const companyData = [
   {
       "name": "Ethel Price",

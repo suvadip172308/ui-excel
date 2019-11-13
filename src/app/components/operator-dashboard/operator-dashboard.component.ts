@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { Page } from '../../shared/classes/page';
 import { CommonService } from '../../services/common/common.service';
+import { ApiService } from 'src/app/services/api/api.service';
+import { PAGE_SIZE } from '../../shared/const/conts';
+import { Transaction } from '../../models/common.model';
 
 @Component({
   selector: 'app-operator-dashboard',
@@ -11,38 +13,59 @@ import { CommonService } from '../../services/common/common.service';
 export class OperatorDashboardComponent implements OnInit {
   @ViewChild('dataTable', {static: true}) table;
   isLoading: boolean = false;
-  page = new Page();
+  pageSize = PAGE_SIZE;
+  totalElements = 0;
+  pageNumber = 0;
   rows = [];
+  columns = [];
 
-  constructor(private commonService: CommonService) {
-    this.setPage({offset: 0, pageSize: 10});
+  constructor(
+    private commonService: CommonService,
+    private apiService: ApiService
+  ) {
+    this.setPage({offset: 0, pageSize: this.pageSize });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.columns = [
+      { name: 'Retailer Name'},
+      { name: 'Company Name'},
+      { name: 'Route Name'},
+      { name: 'Agent Name'},
+      { name: 'Invoice Amount'},
+      { name: 'Payment'},
+      { name: 'Created On'}
+    ]
+  }
 
   setPage(pageInfo) {
     this.isLoading = true;
-    this.page.pageNumber = pageInfo.offset;
-    this.page.size = pageInfo.pageSize;
+    this.pageNumber = pageInfo.offset;
+    this.pageSize = pageInfo.pageSize;
 
-    this.commonService.getResults(this.page).subscribe(pagedData => {
-      this.page = pagedData.page;
+    const queryParam = [
+      {key: 'offset', value: this.pageNumber + 1},
+      {key: 'size', value: this.pageSize}
+    ];
 
-      // let rows = this.rows;
-      // if (rows.length !== pagedData.page.totalElements) {
-      //   rows = Array.apply(null, Array(pagedData.page.totalElements));
-      //   rows = rows.map((x, i) => this.rows[i]);
-      // }
-
-      // // calc start
-      // const start = this.page.pageNumber * this.page.size;
-
-      // // set rows to our new rows
-      // pagedData.data.map((x, i) => rows[i + start] = x);
-      // this.rows = rows;
-      this.rows = pagedData.data;
+    this.apiService.getCall('/transaction', queryParam).subscribe(response => {
+      this.rows = this.getTransactionData(response['data']);
+      this.totalElements = response['totalElements'];
       this.isLoading = false;
     });
   }
 
+  getTransactionData(transactions): Transaction[] {
+    return transactions.map(transaction => {
+      return {
+        createdOn: this.commonService.getDate(transaction.creationDate),
+        retailerName: transaction.retailerName,
+        companyName: transaction.companyName,
+        routeName: transaction.routeName,
+        agentName: transaction.agentName,
+        invoiceAmount: transaction.invoiceAmount,
+        payment: transaction.payment
+      }
+    });
+  }
 }

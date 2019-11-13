@@ -4,16 +4,16 @@
         #dataTable
         class="material"
         [rows]="rows"
-        [columns]="[{name:'Name'},{name:'Gender'},{name:'Company'}]"
-        [columnMode]="'force'"
+        [columns]="columns"
+        [columnMode]="'forced'"
         [headerHeight]="50"
         [loadingIndicator]="isLoading"
         [footerHeight]="'auto'"
         [rowHeight]="'auto'"
         [externalPaging]="true"
-        [count]="page.totalElements"
-        [limit]= "page.pageSize"
-        [offset]="page.pageNumber"
+        [count]="totalElements"
+        [limit]="pageSize"
+        [offset]="pageNumber"
         (page)='setPage($event)'>
       </ngx-datatable>
   </div>

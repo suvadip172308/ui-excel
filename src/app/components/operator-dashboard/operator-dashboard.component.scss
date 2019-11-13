@@ -11,8 +11,21 @@
   width: 100%;
   height: 100%;
   .ngx-datatable {
-    width: 96%;
+    width: 90%;
+    height: 98vh;
     margin: 0 auto;
-    top: 25px;
+    top: 6px;
+  }
+}
+
+:host ::ng-deep datatable-body-cell {
+  .datatable-body-cell-label {
+    span {
+      max-width: 150px;
+      display: inline-block;
+		  white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+    }
   }
 }
