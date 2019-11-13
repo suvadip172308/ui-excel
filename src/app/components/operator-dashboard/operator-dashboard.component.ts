@@ -35,7 +35,7 @@ export class OperatorDashboardComponent implements OnInit {
       { name: 'Invoice Amount'},
       { name: 'Payment'},
       { name: 'Created On'}
-    ]
+    ];
   }
 
   setPage(pageInfo) {
