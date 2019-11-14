@@ -27,15 +27,11 @@ export class OperatorDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.columns = [
-      { name: 'Retailer Name'},
-      { name: 'Company Name'},
-      { name: 'Route Name'},
-      { name: 'Agent Name'},
-      { name: 'Invoice Amount'},
-      { name: 'Payment'},
-      { name: 'Created On'}
-    ];
+    
+  }
+
+  getSerialNo(pageInfo, index) {
+    return (pageInfo.offset * pageInfo.pageSize) + index + 1;
   }
 
   setPage(pageInfo) {
@@ -49,16 +45,17 @@ export class OperatorDashboardComponent implements OnInit {
     ];
 
     this.apiService.getCall('/transaction', queryParam).subscribe(response => {
-      this.rows = this.getTransactionData(response['data']);
+      this.rows = this.getTransactionData(response['data'], pageInfo);
       this.totalElements = response['totalElements'];
       this.isLoading = false;
     });
   }
 
-  getTransactionData(transactions): Transaction[] {
-    return transactions.map(transaction => {
+  getTransactionData(transactions, pageInfo): Transaction[] {
+    return transactions.map((transaction, index) => {
       return {
-        createdOn: this.commonService.getDate(transaction.creationDate),
+        serialNo: this.getSerialNo(pageInfo, index),
+        date: this.commonService.getDate(transaction.creationDate),
         retailerName: transaction.retailerName,
         companyName: transaction.companyName,
         routeName: transaction.routeName,
