@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CommonService } from '../../services/common/common.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { PAGE_SIZE } from '../../shared/const/conts';
 import { Transaction } from '../../models/common.model';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-operator-dashboard',
@@ -18,10 +20,12 @@ export class OperatorDashboardComponent implements OnInit {
   pageNumber = 0;
   rows = [];
   columns = [];
+  selected = [];
 
   constructor(
     private commonService: CommonService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private _router: Router
   ) {
     this.setPage({offset: 0, pageSize: this.pageSize });
   }
@@ -64,5 +68,15 @@ export class OperatorDashboardComponent implements OnInit {
         payment: transaction.payment
       }
     });
+  }
+
+  onSelectRow(event) {
+    if(event.type !== 'click') {
+      return;
+    }
+
+    console.log('Hello:', event.row);
+    const id = event.row.id;
+    this._router.navigate([`dashboard/transaction/${id}`]);
   }
 }

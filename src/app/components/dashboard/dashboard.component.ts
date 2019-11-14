@@ -12,8 +12,7 @@ export class DashboardComponent implements OnInit {
   isAdmin = false;
 
   constructor(
-    private authService: AuthService,
-    private _router: Router
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
