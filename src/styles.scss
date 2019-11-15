@@ -10,3 +10,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; };
 .dark-backdrop {
   background:rgba(0,0,0,0.1);
 }
+
+.mat-card {
+  border-radius: 0px !important;
+}

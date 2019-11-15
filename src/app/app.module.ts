@@ -18,8 +18,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { OperatorDashboardComponent } from './components/operator-dashboard/operator-dashboard.component';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +30,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     SpinnerComponent,
     HeaderComponent,
     FooterComponent,
-    OperatorDashboardComponent,
-    AdminDashboardComponent
+    TransactionDetailsComponent,
+    TransactionListComponent
   ],
   imports: [
     BrowserModule,

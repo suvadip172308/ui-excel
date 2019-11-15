@@ -1,16 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CommonService } from '../../services/common/common.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { PAGE_SIZE } from '../../shared/const/conts';
 import { Transaction } from '../../models/common.model';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
-  selector: 'app-operator-dashboard',
-  templateUrl: './operator-dashboard.component.html',
-  styleUrls: ['./operator-dashboard.component.scss']
+  selector: 'app-transaction-list',
+  templateUrl: './transaction-list.component.html',
+  styleUrls: ['./transaction-list.component.scss']
 })
-export class OperatorDashboardComponent implements OnInit {
+export class TransactionListComponent implements OnInit {
   @ViewChild('dataTable', {static: true}) table;
   isLoading: boolean = false;
   pageSize = PAGE_SIZE;
@@ -18,16 +20,16 @@ export class OperatorDashboardComponent implements OnInit {
   pageNumber = 0;
   rows = [];
   columns = [];
+  selected = [];
 
   constructor(
     private commonService: CommonService,
-    private apiService: ApiService
-  ) {
-    this.setPage({offset: 0, pageSize: this.pageSize });
-  }
+    private apiService: ApiService,
+    private _router: Router
+  ) {}
 
   ngOnInit() {
-    
+    this.setPage({offset: 0, pageSize: this.pageSize });
   }
 
   getSerialNo(pageInfo, index) {
@@ -40,8 +42,8 @@ export class OperatorDashboardComponent implements OnInit {
     this.pageSize = pageInfo.pageSize;
 
     const queryParam = [
-      {key: 'offset', value: this.pageNumber + 1},
-      {key: 'size', value: this.pageSize}
+      { key: 'offset', value: this.pageNumber + 1 },
+      { key: 'size', value: this.pageSize }
     ];
 
     this.apiService.getCall('/transaction', queryParam).subscribe(response => {
@@ -54,6 +56,7 @@ export class OperatorDashboardComponent implements OnInit {
   getTransactionData(transactions, pageInfo): Transaction[] {
     return transactions.map((transaction, index) => {
       return {
+        id: transaction._id,
         serialNo: this.getSerialNo(pageInfo, index),
         date: this.commonService.getDate(transaction.creationDate),
         retailerName: transaction.retailerName,
@@ -64,5 +67,14 @@ export class OperatorDashboardComponent implements OnInit {
         payment: transaction.payment
       }
     });
+  }
+
+  onSelectRow(event) {
+    if(event.type !== 'click') {
+      return;
+    }
+
+    const id = event.row.id;
+    this._router.navigateByUrl(`dashboard/transaction/${id}`);
   }
 }

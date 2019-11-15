@@ -18,5 +18,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.isAdmin = this.authService.isAdmin();
+    this._router.navigate(['dashboard','transaction']);
   }
 }
