@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { OperatorDashboardComponent } from './components/operator-dashboard/operator-dashboard.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TransactionDetailsComponent } from './components/transaction-details/tr
     FooterComponent,
     OperatorDashboardComponent,
     AdminDashboardComponent,
-    TransactionDetailsComponent
+    TransactionDetailsComponent,
+    TransactionListComponent
   ],
   imports: [
     BrowserModule,

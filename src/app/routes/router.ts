@@ -3,6 +3,7 @@ import { RegisterComponent } from '../components/register/register.component';
 import { LoginComponent } from '../components/login/login.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { TransactionDetailsComponent } from '../components/transaction-details/transaction-details.component';
+import { TransactionListComponent } from '../components/transaction-list/transaction-list.component';
 
 export const ROUTES: Routes = [
   {
@@ -20,10 +21,20 @@ export const ROUTES: Routes = [
   { 
     path: 'dashboard',
     component: DashboardComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'transaction',
+        pathMatch: 'full'
+      },
+      {
+        path: 'transaction/:id',
+        component: TransactionDetailsComponent
+      },
+      {
+        path: 'transaction',
+        component: TransactionListComponent
+      },
+    ]
   },
-  {
-    path: 'dashboard/transaction/:id',
-    component: TransactionDetailsComponent,
-    pathMatch: 'full'
-  }
 ];

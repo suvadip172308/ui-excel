@@ -1,8 +1,11 @@
-<div>
+<!-- <div>
   <div *ngIf="isAdmin;else operator">
     <app-admin-dashboard></app-admin-dashboard>
   </div>
   <ng-template #operator>
     <app-operator-dashboard></app-operator-dashboard>
   </ng-template>
+</div> -->
+<div>
+  <router-outlet></router-outlet>
 </div>

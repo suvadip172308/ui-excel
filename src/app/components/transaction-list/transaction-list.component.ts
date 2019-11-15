@@ -8,11 +8,11 @@ import { Transaction } from '../../models/common.model';
 import { Route } from '@angular/compiler/src/core';
 
 @Component({
-  selector: 'app-operator-dashboard',
-  templateUrl: './operator-dashboard.component.html',
-  styleUrls: ['./operator-dashboard.component.scss']
+  selector: 'app-transaction-list',
+  templateUrl: './transaction-list.component.html',
+  styleUrls: ['./transaction-list.component.scss']
 })
-export class OperatorDashboardComponent implements OnInit {
+export class TransactionListComponent implements OnInit {
   @ViewChild('dataTable', {static: true}) table;
   isLoading: boolean = false;
   pageSize = PAGE_SIZE;
@@ -26,12 +26,10 @@ export class OperatorDashboardComponent implements OnInit {
     private commonService: CommonService,
     private apiService: ApiService,
     private _router: Router
-  ) {
-    this.setPage({offset: 0, pageSize: this.pageSize });
-  }
+  ) {}
 
   ngOnInit() {
-    
+    this.setPage({offset: 0, pageSize: this.pageSize });
   }
 
   getSerialNo(pageInfo, index) {
