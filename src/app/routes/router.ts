@@ -8,7 +8,7 @@ import { TransactionListComponent } from '../components/transaction-list/transac
 export const ROUTES: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -28,13 +28,13 @@ export const ROUTES: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'transaction/:id',
-        component: TransactionDetailsComponent
-      },
-      {
         path: 'transaction',
         component: TransactionListComponent
       },
+      {
+        path: 'transaction/:id',
+        component: TransactionDetailsComponent
+      }
     ]
   },
 ];
