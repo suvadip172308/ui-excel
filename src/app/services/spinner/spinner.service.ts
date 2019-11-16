@@ -40,7 +40,7 @@ export class SpinnerService {
     return overlayConfig;
   }
 
-  open(config: SpinnerConfig = {}) {
+  start(config: SpinnerConfig = {}) {
     const dialogConfig = { ...SPINNER_DEFAULT_CONFIG, ...config };
 
     this.overlayRef = this.createOverlay(dialogConfig);
@@ -50,7 +50,7 @@ export class SpinnerService {
     return this.overlayRef ;
   }
 
-  close(): void {
+  end(): void {
     this.overlayRef.dispose();
   }
 }

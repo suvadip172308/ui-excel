@@ -43,10 +43,10 @@ export class LoginComponent implements OnInit {
       password  // make it encrypted later
     };
     
-    this.spinnerService.open();
+    this.spinnerService.start();
 
     this.apiService.postCall('/auth', body).pipe(
-      finalize(() => this.spinnerService.close())
+      finalize(() => this.spinnerService.end())
     ).subscribe((res: HttpResponse<Login>) => {
       const token = res.headers.get('Authorization');
       const body = res.body;

@@ -118,9 +118,9 @@ export class RegisterComponent implements OnInit {
       companies: this.companies
     };
 
-    this.spinnerService.open();
+    this.spinnerService.start();
     this.apiService.postCall('/users', body).pipe(
-      finalize(() => this.spinnerService.close())
+      finalize(() => this.spinnerService.end())
     ).subscribe(() => {
       this.commonService.openSnackBar('Registration Successful');
       this._router.navigate(['login']);

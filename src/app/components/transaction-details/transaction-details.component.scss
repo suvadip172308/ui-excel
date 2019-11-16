@@ -1,0 +1,49 @@
+@import '~@angular/material/theming';
+
+.mat-card {
+  @include mat-elevation(20, #000, 0.8);
+}
+
+.transaction-details {
+  width: 70%;
+  margin: 2em auto;
+
+  mat-card-header {
+    border-bottom: 1px solid black;
+  }
+
+  .info-header {
+    margin-left: 1em;
+  }
+
+  .info-container {
+    margin-left: 5.5em;
+
+    .info-table-wrapper{
+      min-height: 90vh;
+
+      .row {
+        margin-top: 20px;
+        font-size: 1.2em;
+        font-weight: lighter;
+
+        .left-col {
+          padding-right: 4em;
+        }
+      }
+    }
+  }
+
+  .info-footer {
+    margin-bottom: 40px;
+    text-align: center;
+
+    .back-info-button {
+      width: 8em;
+    }
+
+    .edit-info-button {
+      width: 8em;
+    }
+  }
+}
