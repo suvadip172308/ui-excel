@@ -50,11 +50,11 @@
           </tr>
           <tr class="row">
             <td class="left-col">Created On</td>
-            <td class="right-col">{{transaction?.creationDate || date}}</td>
+            <td class="right-col">{{transaction?.creationDate | date}}</td>
           </tr>
           <tr class="row">
             <td class="left-col">Updated On</td>
-            <td class="right-col">{{transaction?.updationDate}}</td>
+            <td class="right-col">{{transaction?.updationDate | date}}</td>
           </tr>
         </table>
       </div>
