@@ -1,1 +1,74 @@
-<p>transaction-details works!</p>
+<div class="transaction-details">
+  <mat-card class="card-elevation transaction-card">
+    <mat-card-header>
+      <div class="info-header">
+        <h2>Transaction Details</h2>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="info-container">
+        <table class="info-table-wrapper" cellspacing="0">
+          <tr class="row">
+            <td class="left-col">Retailer#</td>
+            <td class="right-col">{{transaction?.retailerId}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Retailer </td>
+            <td class="right-col">{{transaction?.retailerName}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Company</td>
+            <td class="right-col">{{transaction?.companyName}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Route#</td>
+            <td class="right-col">{{transaction?.routeCode}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Route:</td>
+            <td class="right-col">{{transaction?.routeName}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Invoice#</td>
+            <td class="right-col">{{transaction?.invoiceId}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Invoice Amount</td>
+            <td class="right-col">{{transaction?.invoiceAmount}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Payment</td>
+            <td class="right-col">{{transaction?.payment}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Collected By:</td>
+            <td class="right-col">{{transaction?.agentName}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Operator</td>
+            <td class="right-col">{{transaction?.operatorName}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Created On</td>
+            <td class="right-col">{{transaction?.creationDate || date}}</td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">Updated On</td>
+            <td class="right-col">{{transaction?.updationDate}}</td>
+          </tr>
+        </table>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="info-footer">
+        <button mat-raised-button
+          color="accent"
+          class="back-info-button"
+          (click)="onBack()">Back</button>
+        <button mat-raised-button
+          color="accent"
+          class="edit-info-button">Edit</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

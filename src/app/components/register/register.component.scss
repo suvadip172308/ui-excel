@@ -1,3 +1,9 @@
+@import '~@angular/material/theming';
+
+.mat-card {
+  @include mat-elevation(20, #000, 0.8);
+}
+
 .main-div{
   height: 100vh;
   display: flex;

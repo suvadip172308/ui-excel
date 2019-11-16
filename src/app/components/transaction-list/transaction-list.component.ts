@@ -5,7 +5,6 @@ import { CommonService } from '../../services/common/common.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { PAGE_SIZE } from '../../shared/const/conts';
 import { Transaction } from '../../models/common.model';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-transaction-list',
