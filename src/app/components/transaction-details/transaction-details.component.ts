@@ -13,7 +13,21 @@ import { SpinnerService } from '../../services/spinner/spinner.service';
   styleUrls: ['./transaction-details.component.scss']
 })
 export class TransactionDetailsComponent implements OnInit {
+  isEditMode = false;
+  updationObject = {};
+  transactionId: string;
+
   transaction: any;
+  retailerId: string;
+  retailerName: string;
+  companyName: string;
+  routeCode: string;
+  routeName: string;
+  invoiceId: string;
+  invoiceAmount: string;
+  payment: string;
+  agentName: string;
+  operatorName: string;
   
   constructor(
     private apiService: ApiService,
@@ -24,7 +38,8 @@ export class TransactionDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(param => {
-      this.getTransaction(param['id']);
+      this.transactionId = param['id'];
+      this.getTransaction(this.transactionId);
     });
 
   }
@@ -45,6 +60,65 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
   onBack() {
+    if (this.isEditMode) {
+      this.isEditMode = false;
+      return;
+    }
     this._router.navigate(['dashboard']);
+  }
+
+  onEdit(transaction) {
+    this.isEditMode = true;
+  }
+
+  onInput(value, prop) {
+    if (!value) {
+      return;
+    }
+
+    switch(prop) {
+      case 'retailerId':
+        this.updationObject['retailerId'] = value;
+        break;
+      case 'retailerName':
+        this.updationObject['retailerName'] = value;
+        break;
+      case 'companyName':
+        this.updationObject['companyName'] = value;
+        break;
+      case 'routeCode':
+        this.updationObject['routeCode'] = value;
+        break;
+      case 'routeName':
+        this.updationObject['routeName'] = value;
+        break;
+      case 'invoiceId':
+        this.updationObject['invoiceId'] = value;
+        break;
+      case 'invoiceAmount':
+        this.updationObject['invoiceAmount'] = value;
+        break;
+      case 'payment':
+        this.updationObject['payment'] = value;
+        break;
+      case 'agentName':
+        this.updationObject['agentName'] = value;
+        break;
+      case 'operatorName':
+        this.updationObject['operatorName'] = value;
+        break;
+    }
+  }
+
+  onDone() {
+    console.log('Update:', this.updationObject);
+    this.spinnerService.start();
+    this.apiService.updateCall(
+      '/transaction',
+      this.transactionId,
+      this.updationObject
+    ).pipe(
+      finalize(() => this.spinnerService.end())
+    ).subscribe(response => this.transaction = response);
   }
 }
