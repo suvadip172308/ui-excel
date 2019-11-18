@@ -5,7 +5,7 @@
 }
 
 .transaction-details {
-  width: 70%;
+  width: 60%;
   margin: 2em auto;
 
   mat-card-header {
@@ -13,22 +13,30 @@
   }
 
   .info-header {
-    margin-left: 1em;
+    width: 100%;
+    text-align: center;
   }
 
   .info-container {
-    margin-left: 5.5em;
+    width: 100%;
 
     .info-table-wrapper{
       min-height: 90vh;
+      width: 45%;
+      margin: auto;
+      border-collapse: collapse;
 
       .row {
-        margin-top: 20px;
+        margin-top: 5px;
         font-size: 1.2em;
         font-weight: lighter;
 
-        .left-col {
-          padding-right: 4em;
+        .asterisk {
+          color: red;
+        }
+
+        td {
+          white-space: nowrap;
         }
       }
     }
