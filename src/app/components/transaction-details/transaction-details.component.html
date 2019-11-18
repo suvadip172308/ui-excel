@@ -199,15 +199,11 @@
           class="back-info-button"
           (click)="onBack()">Back</button>
         <button mat-raised-button
-          *ngIf="!isEditMode"
           color="accent"
           class="edit-info-button"
-          (click)="onEdit(transaction)">Edit</button>
-        <button mat-raised-button
-          *ngIf="isEditMode"
-          color="accent"
-          class="edit-info-button"
-          (click)="onDone()">Done</button>
+          (click)="isEditMode ? onDone() : onEdit(transaction)">
+          {{isEditMode ? 'Done' : 'Edit'}}
+        </button>
       </div>
     </mat-card-actions>
   </mat-card>
