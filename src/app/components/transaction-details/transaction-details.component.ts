@@ -108,6 +108,9 @@ export class TransactionDetailsComponent implements OnInit {
       this.updationObject
     ).pipe(
       finalize(() => this.spinnerService.end())
-    ).subscribe(response => this.transaction = response);
+    ).subscribe(response => {
+      this.transaction = response;
+      this.isEditMode = false;
+    });
   }
 }
