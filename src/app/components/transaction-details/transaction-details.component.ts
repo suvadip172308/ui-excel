@@ -16,18 +16,7 @@ export class TransactionDetailsComponent implements OnInit {
   isEditMode = false;
   updationObject = {};
   transactionId: string;
-
   transaction: any;
-  retailerId: string;
-  retailerName: string;
-  companyName: string;
-  routeCode: string;
-  routeName: string;
-  invoiceId: string;
-  invoiceAmount: string;
-  payment: string;
-  agentName: string;
-  operatorName: string;
   
   constructor(
     private apiService: ApiService,
