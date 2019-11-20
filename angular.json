@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "ui-excel"
+  "defaultProject": "ui-excel",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
