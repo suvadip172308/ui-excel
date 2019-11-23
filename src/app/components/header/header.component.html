@@ -3,7 +3,7 @@
     <div class="header-title">Excel</div>
     <div *ngIf="isLoggedIn"
          class="info-container">
-      <span class="name">{{name}}</span>
+      <span class="name">{{getName((data$ | async)?.name)}}</span>
       <button mat-button class="logout-menu" [matMenuTriggerFor]="menu">
         <mat-icon class="icon-account">exit_to_app</mat-icon>
       </button>

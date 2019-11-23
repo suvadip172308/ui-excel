@@ -1,28 +1,33 @@
 import { Action } from '@ngrx/store';
 
-import { User } from '../models/user.model';
+import { UserState } from '../models/common.state';
 import * as LoginActions from '../actions/login.actions';
 
-const initialState: User = {
+const initialUserState: UserState = {
   userName: '',
   name: '',
   isAdmin: false
 }
 
-function loginReducer(state: User = initialState, action: LoginActions.Actions) {
+export function userReducer(state: UserState = initialUserState, action: LoginActions.Actions) {
   switch(action.type) {
     case LoginActions.ADD_USER:
       return {
         ...state,
         userName: action.payload.userName,
-        name: action.payload.name,
-        isAdmin: action.payload.isAdmin || false
+        name: action.payload.name
+      };
+    
+    case LoginActions.UPDATE_USERSTATUS:
+      return {
+        ...state,
+        isAdmin: action.payload.isAdmin || state.isAdmin
       };
     
     case LoginActions.REMOVE_USER:
-      return initialState;
+      return initialUserState;
     
     default:
-      return initialState;
+      return state;
   }
 }

@@ -100,7 +100,6 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
   onDone() {
-    console.log('Update:', this.updationObject);
     this.spinnerService.start();
     this.apiService.updateCall(
       '/transaction',
