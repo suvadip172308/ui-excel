@@ -56,7 +56,13 @@ export class LoginComponent implements OnInit {
 
       if (token) {
         this.authService.setToken(token);
-        this.store.dispatch(new AddUser({userName: body.userName, name: body.name}));
+        const userName = body.userName;
+        const name = body.name;
+        const isAdmin = this.authService.isAdmin();
+
+        this.authService.setLocalStore('userName', userName);
+        this.authService.setLocalStore('name', name);
+        this.store.dispatch(new AddUser({userName, name, isAdmin}));
 
         this._router.navigate(['dashboard']);
       }

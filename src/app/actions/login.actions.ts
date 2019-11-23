@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 
 import { UserState } from '../models/common.state';
@@ -12,13 +11,8 @@ export class AddUser implements Action {
   constructor(readonly payload: UserState) {};
 }
 
-export class UpdateUserStatus implements Action {
-  readonly type = UPDATE_USERSTATUS;
-  constructor(readonly payload: {isAdmin: boolean}) {};
-}
-
 export class RemoveUser implements Action {
   readonly type = REMOVE_USER;
 }
 
-export type Actions = AddUser | UpdateUserStatus | RemoveUser;
+export type Actions = AddUser | RemoveUser;
