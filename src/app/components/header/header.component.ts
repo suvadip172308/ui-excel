@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getName(name: string) {
-    return `Hi ${name}`;
+    return name ? `Hi ${name}` : '';
   }
 
   onLogout() {

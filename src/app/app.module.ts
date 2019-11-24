@@ -24,6 +24,8 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { environment } from '../environments/environment';
     HeaderComponent,
     FooterComponent,
     TransactionDetailsComponent,
-    TransactionListComponent
+    TransactionListComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { environment } from '../environments/environment';
       }
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    LayoutModule
   ],
   providers: [
     {
