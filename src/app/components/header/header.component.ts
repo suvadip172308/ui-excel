@@ -15,7 +15,7 @@ import { selectUser } from '../../reducers';
 })
 export class HeaderComponent implements OnInit {
 
-  private data$: Observable<UserState>;
+  data$: Observable<UserState>;
   
   constructor(
     private authService: AuthService,
