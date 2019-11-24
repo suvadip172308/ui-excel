@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { AuthService } from '../../services/auth/auth.service';
+import { UserState, AppState } from '../../models/common.state';
+import { RemoveUser } from '../../actions/login.actions';
+import { selectUser } from '../../reducers';
 
 @Component({
   selector: 'app-header',
@@ -10,20 +15,23 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  private data$: Observable<UserState>;
+  
   constructor(
     private authService: AuthService,
-    private _router: Router
+    private _router: Router,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
+    this.data$ = this.store.pipe(select(selectUser));
   }
 
   get isLoggedIn() {
     return this.authService.isTokenAvailable();
   }
 
-  get name() {
-    const name = this.authService.getLocalStore('name');
+  getName(name: string) {
     return `Hi ${name}`;
   }
 
@@ -31,6 +39,7 @@ export class HeaderComponent implements OnInit {
     this.authService.removeToken();
     this.authService.removeLocalStore('userName');
     this.authService.removeLocalStore('name');
+    this.store.dispatch(new RemoveUser());
 
     this._router.navigate(['login']);
   }

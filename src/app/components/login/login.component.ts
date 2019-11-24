@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { SpinnerService } from '../../services/spinner/spinner.service';
 import { CommonService } from '../../services/common/common.service';
 import { Login } from '../../models/common.model';
+import { AddUser } from '../../actions/login.actions';
+import { AppState } from '../../models/common.state';
 
 @Component({
   selector: 'app-login',
@@ -24,10 +27,10 @@ export class LoginComponent implements OnInit {
     private commonService: CommonService,
     private spinnerService: SpinnerService,
     private _router: Router,
+    private store: Store<AppState>
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   doLogin() {
     const userName = this.userName.trim();
@@ -53,8 +56,14 @@ export class LoginComponent implements OnInit {
 
       if (token) {
         this.authService.setToken(token);
-        this.authService.setLocalStore('userName', body.userName);
-        this.authService.setLocalStore('name', body.name);
+        const userName = body.userName;
+        const name = body.name;
+        const isAdmin = this.authService.isAdmin();
+
+        this.authService.setLocalStore('userName', userName);
+        this.authService.setLocalStore('name', name);
+        this.store.dispatch(new AddUser({userName, name, isAdmin}));
+
         this._router.navigate(['dashboard']);
       }
     }, (err) => {

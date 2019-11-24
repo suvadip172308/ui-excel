@@ -20,6 +20,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,14 @@ import { TransactionListComponent } from './components/transaction-list/transact
     FormsModule,
     MatIconModule,
     NgxDatatableModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers, 
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     {
