@@ -14,6 +14,7 @@ import { SpinnerService } from '../../services/spinner/spinner.service';
 })
 export class TransactionDetailsComponent implements OnInit {
   isEditMode = false;
+  isCreateMode = false;
   updationObject = {};
   transactionId: string;
   transaction: any;

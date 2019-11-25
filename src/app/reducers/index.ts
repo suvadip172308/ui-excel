@@ -9,9 +9,11 @@ import {
 } from '../models/common.state';
 
 import { userReducer } from './login.reducer';
+import { transactionReducer } from './transaction.reducer';
 
 export const reducers: ActionReducerMap<AppState> = {
-  user: userReducer
+  user: userReducer,
+  transaction: transactionReducer
 };
 
 export const selectUser = (state: AppState) => state.user;

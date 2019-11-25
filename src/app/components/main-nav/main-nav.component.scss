@@ -1,5 +1,9 @@
 .sidenav-container {
-  height: 100%;
+  min-height: 100vh;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
 }
 
 .sidenav {
@@ -14,5 +18,11 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.info-wrapper {
+  .user-role {
+    font-size: 12px;
+  }
 }
 

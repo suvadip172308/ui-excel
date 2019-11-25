@@ -4,6 +4,12 @@ export interface UserState {
   isAdmin?: boolean;
 };
 
+export interface TransactionState {
+  isEditMode?: boolean;
+  isCreateMode?: boolean;
+}
+
 export interface AppState {
   user: UserState
+  transaction: TransactionState
 }

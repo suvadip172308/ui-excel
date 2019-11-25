@@ -16,7 +16,6 @@ import { LoginComponent } from './components/login/login.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
@@ -34,11 +33,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     LoginComponent,
     DashboardComponent,
     SpinnerComponent,
-    HeaderComponent,
     FooterComponent,
     TransactionDetailsComponent,
     TransactionListComponent,
-    MainNavComponent
+    MainNavComponent,
   ],
   imports: [
     BrowserModule,
