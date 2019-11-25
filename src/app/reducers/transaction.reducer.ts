@@ -7,5 +7,17 @@ const initialTransactionState = {
 };
 
 export function transactionReducer(state: TransactionState = initialTransactionState, action: TransactionAction.Actions) {
- return 0;
+  switch(action.type) {
+    case TransactionAction.CHANGE_CREATE_MODE:
+      return {
+        ...state,
+        isCreateMode: action.payload
+      };
+    
+    case TransactionAction.CHANGE_EDIT_MODE:
+      return {
+        ...state,
+        isEditMode: action.payload
+      }
+  }
 }

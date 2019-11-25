@@ -23,7 +23,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { HeaderNavbarComponent } from './components/header-navbar/header-navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
@@ -36,7 +36,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     FooterComponent,
     TransactionDetailsComponent,
     TransactionListComponent,
-    MainNavComponent,
+    HeaderNavbarComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,5 +17,6 @@ export const reducers: ActionReducerMap<AppState> = {
 };
 
 export const selectUser = (state: AppState) => state.user;
+export const selectTransaction = (state: AppState) => state.transaction;
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];

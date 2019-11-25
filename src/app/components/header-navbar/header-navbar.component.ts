@@ -13,10 +13,10 @@ import { LINKS } from '../../shared/const/conts';
 
 @Component({
   selector: 'app-main-nav',
-  templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.scss']
+  templateUrl: './header-navbar.component.html',
+  styleUrls: ['./header-navbar.component.scss']
 })
-export class MainNavComponent {
+export class HeaderNavbarComponent {
   data$: Observable<UserState>;
   isOpened = false;
   links = LINKS;

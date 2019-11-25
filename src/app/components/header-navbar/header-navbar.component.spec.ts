@@ -7,15 +7,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { MainNavComponent } from './main-nav.component';
+import { HeaderNavbarComponent } from './header-navbar.component';
 
 describe('MainNavComponent', () => {
-  let component: MainNavComponent;
-  let fixture: ComponentFixture<MainNavComponent>;
+  let component: HeaderNavbarComponent;
+  let fixture: ComponentFixture<HeaderNavbarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MainNavComponent],
+      declarations: [HeaderNavbarComponent],
       imports: [
         NoopAnimationsModule,
         LayoutModule,
@@ -29,7 +29,7 @@ describe('MainNavComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainNavComponent);
+    fixture = TestBed.createComponent(HeaderNavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
