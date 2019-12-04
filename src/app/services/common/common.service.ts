@@ -27,4 +27,8 @@ export class CommonService {
 
     return `${day}/${month}/${year}`;
   }
+
+  getSerialNo(pageInfo, index) {
+    return (pageInfo.offset * pageInfo.pageSize) + index + 1;
+  }
 }

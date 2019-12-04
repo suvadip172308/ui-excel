@@ -31,10 +31,6 @@ export class TransactionListComponent implements OnInit {
     this.setPage({offset: 0, pageSize: this.pageSize });
   }
 
-  getSerialNo(pageInfo, index) {
-    return (pageInfo.offset * pageInfo.pageSize) + index + 1;
-  }
-
   setPage(pageInfo) {
     this.isLoading = true;
     this.pageNumber = pageInfo.offset;
@@ -56,7 +52,7 @@ export class TransactionListComponent implements OnInit {
     return transactions.map((transaction, index) => {
       return {
         id: transaction._id,
-        serialNo: this.getSerialNo(pageInfo, index),
+        serialNo: this.commonService.getSerialNo(pageInfo, index),
         date: this.commonService.getDate(transaction.creationDate),
         retailerName: transaction.retailerName,
         companyName: transaction.companyName,

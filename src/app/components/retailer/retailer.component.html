@@ -1,0 +1,47 @@
+<div class="retailer-container">
+  <ngx-datatable #dataTable
+    class="material"
+    [rows]="rows"
+    [columnMode]="'flex'"
+    [headerHeight]="50"
+    [loadingIndicator]="isLoading"
+    [footerHeight]="'auto'"
+    [rowHeight]="'auto'"
+    [externalPaging]="true"
+    [count]="totalElements"
+    [limit]="pageSize"
+    [offset]="pageNumber"
+    (page)="onSetPage($event)"
+    (activate)="onSelectRow($event)">
+      <ngx-datatable-column name="Sl#" [flexGrow]="0.5">
+        <ng-template let-row="row" let-expanded='expanded' let-rowIndex='rowIndex' ngx-datatable-cell-template>
+          <span>{{row.serialNo}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="ID#" [flexGrow]="1.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.retailerId}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name" [flexGrow]="3.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.retailerName}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Company" [flexGrow]="2.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.companyName}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Balance" [flexGrow]="2.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.balance}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Status" [flexGrow]="1.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.isActivated ? 'Active' : 'Inactive'}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+  </ngx-datatable>
+</div>
