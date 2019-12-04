@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
@@ -20,6 +20,7 @@ import { AppState } from '../../models/common.state';
 export class LoginComponent implements OnInit {
   userName = "";
   password = "";
+  ENTER_KEYCODE = 13;
 
   constructor(
     private apiService: ApiService,
@@ -31,6 +32,13 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {}
+
+  @HostListener('document:keydown', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    if (event.keyCode === this.ENTER_KEYCODE) {
+      this.doLogin();
+    }
+  }
 
   doLogin() {
     const userName = this.userName.trim();

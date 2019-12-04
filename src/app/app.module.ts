@@ -16,7 +16,6 @@ import { LoginComponent } from './components/login/login.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
@@ -24,6 +23,8 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { HeaderNavbarComponent } from './components/header-navbar/header-navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,10 @@ import { environment } from '../environments/environment';
     LoginComponent,
     DashboardComponent,
     SpinnerComponent,
-    HeaderComponent,
     FooterComponent,
     TransactionDetailsComponent,
-    TransactionListComponent
+    TransactionListComponent,
+    HeaderNavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +55,7 @@ import { environment } from '../environments/environment';
       }
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    LayoutModule
   ],
   providers: [
     {

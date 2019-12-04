@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { take, finalize } from 'rxjs/operators';
+import { take, finalize, filter } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/api/api.service';
 import { SpinnerService } from '../../services/spinner/spinner.service';
+import { TransactionMode } from '../../models/common.model';
 
 
 @Component({
@@ -13,7 +14,9 @@ import { SpinnerService } from '../../services/spinner/spinner.service';
   styleUrls: ['./transaction-details.component.scss']
 })
 export class TransactionDetailsComponent implements OnInit {
-  isEditMode = false;
+  //isEditMode = false;
+  //isCreateMode = false;
+  mode = TransactionMode.display;
   updationObject = {};
   transactionId: string;
   transaction: any;
@@ -26,11 +29,31 @@ export class TransactionDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(param => {
-      this.transactionId = param['id'];
-      this.getTransaction(this.transactionId);
+    this.route.queryParams
+      .pipe(filter(params => params.mode))
+      .subscribe(params => {
+        const mode = params.mode.trim();
+        this.mode = mode;
     });
+    
+    if (!this.isCreateMode) {
+      this.route.params.subscribe(param => {
+        this.transactionId = param['id'];
+        this.getTransaction(this.transactionId);
+      });
+    }
+  }
 
+  get isCreateMode() {
+    return this.mode === TransactionMode.create;
+  }
+
+  get isEditMode() {
+    return this.mode === TransactionMode.edit;
+  }
+
+  get isDisplayMode() {
+    return this.mode === TransactionMode.display;
   }
 
   getTransaction(id: string) {
@@ -50,14 +73,14 @@ export class TransactionDetailsComponent implements OnInit {
 
   onBack() {
     if (this.isEditMode) {
-      this.isEditMode = false;
+      this.mode = TransactionMode.display
       return;
     }
     this._router.navigate(['dashboard']);
   }
 
   onEdit(transaction) {
-    this.isEditMode = true;
+    this.mode = TransactionMode.edit;
   }
 
   onInput(value, prop) {
@@ -109,7 +132,20 @@ export class TransactionDetailsComponent implements OnInit {
       finalize(() => this.spinnerService.end())
     ).subscribe(response => {
       this.transaction = response;
-      this.isEditMode = false;
+      this.mode = TransactionMode.display;
+    });
+  }
+
+  onCreate() {
+    this.spinnerService.start();
+    this.apiService.postCall(
+      '/transaction',
+      this.updationObject
+    ).pipe(
+      finalize(() => this.spinnerService.end())
+    ).subscribe(response => {
+      this.mode = TransactionMode.display;
+      this._router.navigate(['dashboard', 'transaction']);
     });
   }
 }

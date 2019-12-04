@@ -1,0 +1,41 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="false"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="'over'"
+    [opened]="isOpened">
+    <mat-toolbar>
+      <div class="info-wrapper">
+        <div class="user-name">{{getName((data$ | async)?.name)}}</div>
+        <div class="user-role">{{getRole((data$ | async)?.isAdmin)}}</div>
+      </div>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <div *ngFor="let link of links"
+        (click)="drawer.close()">
+        <a mat-list-item
+          (click)="onNavigation(link)">{{link.viewName}}</a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="accent">
+      <button type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Excel</span>
+      <span class="spacer"></span>
+      <button mat-button
+        class="logout"
+        (click)="onLogout()">
+        <mat-icon class="icon-account">exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -74,6 +74,9 @@ export class TransactionListComponent implements OnInit {
     }
 
     const id = event.row.id;
-    this._router.navigateByUrl(`dashboard/transaction/${id}`);
+    this._router.navigate(
+      ['dashboard', 'transaction', id],
+      { queryParams: { mode: 'display'}}
+    );
   }
 }
