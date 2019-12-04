@@ -12,7 +12,7 @@ import { RemoveUser } from '../../actions/login.actions';
 import { LINKS } from '../../shared/const/conts';
 
 @Component({
-  selector: 'app-main-nav',
+  selector: 'app-header-nav',
   templateUrl: './header-navbar.component.html',
   styleUrls: ['./header-navbar.component.scss']
 })
@@ -53,6 +53,12 @@ export class HeaderNavbarComponent {
         break;
       case 'transaction':
         this._router.navigate(['dashboard', 'transaction']);
+        break;
+      case 'create-transaction':
+        this._router.navigate(
+          ['dashboard','transaction', 'new'],
+          { queryParams: { mode: 'create'}}
+        );
         break;
       case 'reatiler':
         this._router.navigate(['dashboard', 'retailer']);

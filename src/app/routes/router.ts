@@ -17,7 +17,8 @@ export const ROUTES: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent },
+    component: RegisterComponent 
+  },
   { 
     path: 'dashboard',
     component: DashboardComponent,
@@ -34,7 +35,11 @@ export const ROUTES: Routes = [
       {
         path: 'transaction/:id',
         component: TransactionDetailsComponent
+      },
+      {
+        path: 'transaction/new',
+        component: RegisterComponent 
       }
     ]
-  },
+  }
 ];
