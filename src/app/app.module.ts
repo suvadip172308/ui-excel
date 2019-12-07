@@ -25,8 +25,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HeaderNavbarComponent } from './components/header-navbar/header-navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { RetailerComponent } from './components/retailer/retailer.component';
+import { RetailerListComponent } from './components/retailer-list/retailer-list.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { RetailerDetailsComponent } from './components/retailer-details/retailer-details.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +40,9 @@ import { DataTableComponent } from './components/data-table/data-table.component
     TransactionDetailsComponent,
     TransactionListComponent,
     HeaderNavbarComponent,
-    RetailerComponent,
+    RetailerListComponent,
     DataTableComponent,
+    RetailerDetailsComponent,
   ],
   imports: [
     BrowserModule,

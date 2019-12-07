@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CommonService } from '../../services/common/common.service';
@@ -12,7 +12,6 @@ import { Transaction } from '../../models/common.model';
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
-  @ViewChild('dataTable', {static: true}) table;
   isLoading: boolean = false;
   pageSize = PAGE_SIZE;
   totalElements = 0;

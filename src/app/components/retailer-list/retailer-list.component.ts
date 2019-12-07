@@ -1,25 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PAGE_SIZE } from '../../shared/const/conts';
 import { ApiService } from 'src/app/services/api/api.service';
 import { CommonService } from '../../services/common/common.service';
 
 @Component({
-  selector: 'app-retailer',
-  templateUrl: './retailer.component.html',
-  styleUrls: ['./retailer.component.scss']
+  selector: 'app-retailer-list',
+  templateUrl: './retailer-list.component.html',
+  styleUrls: ['./retailer-list.component.scss']
 })
-export class RetailerComponent implements OnInit {
+export class RetailerListComponent implements OnInit {
   rows = [];
-  totalElements = 10;
+  totalElements = 0;
   pageSize = PAGE_SIZE;
   isLoading = false;
   pageNumber = 0;
 
   constructor(
     private apiService: ApiService,
-    private commonService: CommonService
-  ) { }
+    private commonService: CommonService,
+    private _router: Router
+  ) {}
 
   ngOnInit() {
     this.onSetPage({offset: 0, pageSize: this.pageSize });
@@ -35,14 +37,23 @@ export class RetailerComponent implements OnInit {
       { key: 'size', value: this.pageSize }
     ];
 
-    this.apiService.getCall('/retailers/', queryParam).subscribe(response => {
-      this.rows = this.getRetailer(response, pageInfo);
+    this.apiService.getCall('/retailer/', queryParam).subscribe(response => {
+      this.rows = this.getRetailer(response['data'], pageInfo);
+      this.totalElements = response['totalElements'];
       this.isLoading = false;
     });
   }
 
   onSelectRow(event) {
-    console.log('Hiiiii');
+    if(event.type !== 'click') {
+      return;
+    }
+
+    const id = event.row.id;
+    this._router.navigate(
+      ['dashboard', 'retailer', id],
+      { queryParams: { mode: 'display'}}
+    );
   }
 
   getRetailer(retailers, pageInfo) {
@@ -55,7 +66,7 @@ export class RetailerComponent implements OnInit {
         companyName: retailer.companyName,
         balance: retailer.balance,
         isActivated: retailer.isActivated
-      }
+      };
     });
   }
 

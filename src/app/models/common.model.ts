@@ -24,7 +24,7 @@ export interface QueryParams {
   value: any
 }
 
-export enum TransactionMode {
+export enum Mode {
   display = 'display',
   create = 'create',
   edit = 'edit'
