@@ -16,6 +16,7 @@ export class RetailerDetailsComponent implements OnInit {
   mode = Mode.display;
   retailerId: string;
   retailer: any
+  updationObject = {};
 
   constructor(
     private apiService: ApiService,
@@ -73,7 +74,45 @@ export class RetailerDetailsComponent implements OnInit {
       return;
     }
 
-    this._router.navigate(['dashboard']);
+    this._router.navigate(['dashboard', 'retailer']);
   }
 
+  onEdit(retailer) {
+    this.mode = Mode.edit;
+  }
+
+  onInput(value, prop) {
+    if (!value) {
+      return;
+    }
+
+    switch(prop) {
+      case 'retailerId':
+        this.updationObject['retailerId'] = value;
+        break;
+      case 'retailerName':
+        this.updationObject['retailerName'] = value;
+        break;
+      case 'companyName':
+        this.updationObject['companyName'] = value;
+        break;
+      case 'balance':
+        this.updationObject['balance'] = value;
+        break;
+    }
+  }
+
+  onDone() {
+    this.spinnerService.start();
+    this.apiService.updateCall(
+      '/retailer',
+      this.retailerId,
+      this.updationObject
+    ).pipe(
+      finalize(() => this.spinnerService.end())
+    ).subscribe(response => {
+      this.retailer = response;
+      this.mode = Mode.display;
+    });
+  }
 }

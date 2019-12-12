@@ -49,7 +49,7 @@ export class RetailerListComponent implements OnInit {
       return;
     }
 
-    const id = event.row.id;
+    const id = event.row.retailerId;
     this._router.navigate(
       ['dashboard', 'retailer', id],
       { queryParams: { mode: 'display'}}

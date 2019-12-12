@@ -14,7 +14,14 @@
                 <span class="asterisk">*</span>
               </td>
               <td class="right-col">
-                <span>{{retailer?.retailerId}}</span>
+                <span *ngIf="isDisplayMode">{{retailer?.retailerId}}</span>
+                <mat-form-field *ngIf="isEditMode || isCreateMode" 
+                  class="input-wrapper">
+                  <input matInput 
+                    name="retailerId"
+                    [value]="isEditMode ? retailer?.retailerId : ''"
+                    (input)="onInput($event.target.value, 'retailerId')">
+                </mat-form-field>
               </td>
             </tr>
             <tr class="row">
@@ -23,7 +30,14 @@
                 <span class="asterisk">*</span>
               </td>
               <td class="right-col">
-                <span>{{retailer?.retailerName}}</span>
+                <span *ngIf="isDisplayMode">{{retailer?.retailerName}}</span>
+                <mat-form-field *ngIf="isEditMode || isCreateMode" 
+                  class="input-wrapper">
+                  <input matInput 
+                    name="retailerName"
+                    [value]="isEditMode ? retailer?.retailerName : ''"
+                    (input)="onInput($event.target.value, 'retailerName')">
+                </mat-form-field>
               </td>
             </tr>
             <tr class="row">
@@ -32,7 +46,14 @@
                 <span class="asterisk">*</span>
               </td>
               <td class="right-col">
-                <span>{{retailer?.companyName}}</span>
+                <span *ngIf="isDisplayMode">{{retailer?.companyName}}</span>
+                <mat-form-field *ngIf="isEditMode || isCreateMode" 
+                  class="input-wrapper">
+                  <input matInput 
+                    name="companyName"
+                    [value]="isEditMode ? retailer?.companyName : ''"
+                    (input)="onInput($event.target.value, 'companyName')">
+                </mat-form-field>
               </td>
             </tr>
             <tr class="row">
@@ -41,7 +62,14 @@
                 <span class="asterisk">*</span>
               </td>
               <td class="right-col">
-                <span>{{retailer?.balance}}</span>
+                <span *ngIf="isDisplayMode">{{retailer?.balance}}</span>
+                <mat-form-field *ngIf="isEditMode || isCreateMode" 
+                  class="input-wrapper">
+                  <input matInput 
+                    name="balance"
+                    [value]="isEditMode ? retailer?.balance : ''"
+                    (input)="onInput($event.target.value, 'balance')">
+                </mat-form-field>
               </td>
             </tr>
             <tr class="row">
@@ -60,10 +88,14 @@
         <div class="info-footer">
           <button mat-raised-button
             color="accent"
-            class="back-info-button">Back</button>
+            class="back-info-button"
+            (click)="onBack()">Back</button>
           <button mat-raised-button
             color="accent"
-            class="edit-info-button">Done</button>
+            class="edit-info-button"
+            (click)="isEditMode ? onDone() : isCreateMode ? onCreate() : onEdit(retailer)">
+            {{isEditMode ? 'Done' : isCreateMode ? 'Create' : 'Edit'}}
+          </button>
         </div>
       </mat-card-actions>
     </mat-card>
