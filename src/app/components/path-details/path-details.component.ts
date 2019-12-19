@@ -9,14 +9,14 @@ import { CommonService } from '../../services/common/common.service';
 import { Mode } from '../../models/common.model';
 
 @Component({
-  selector: 'app-retailer-details',
-  templateUrl: './retailer-details.component.html',
-  styleUrls: ['./retailer-details.component.scss']
+  selector: 'app-path-details',
+  templateUrl: './path-details.component.html',
+  styleUrls: ['./path-details.component.scss']
 })
-export class RetailerDetailsComponent implements OnInit {
+export class PathDetailsComponent implements OnInit {
   mode = Mode.display;
-  retailerId: string;
-  retailer: any
+  pathId: string;
+  path: any
   updationObject = {};
 
   constructor(
@@ -37,8 +37,8 @@ export class RetailerDetailsComponent implements OnInit {
 
     if (!this.isCreateMode) {
       this.route.params.subscribe(param => {
-        this.retailerId = param['id'];
-        this.getRetailer(this.retailerId);
+        this.pathId = param['id'];
+        this.getPath(this.pathId);
       });
     }
   }
@@ -55,18 +55,18 @@ export class RetailerDetailsComponent implements OnInit {
     return this.mode === Mode.display;
   }
 
-  getRetailer(id: string) {
+  getPath(id: string) {
     if (!id) {
       return;
     }
 
     this.spinnerService.start();
-    this.apiService.getCall(`/retailer/${id}`)
+    this.apiService.getCall(`/path/${id}`)
     .pipe(
       take(1),
       finalize(() => this.spinnerService.end())
     ).subscribe(data => {
-      this.retailer = data;
+      this.path = data;
     });
   }
 
@@ -76,7 +76,7 @@ export class RetailerDetailsComponent implements OnInit {
       return;
     }
 
-    this._router.navigate(['dashboard', 'retailer']);
+    this._router.navigate(['dashboard', 'path']);
   }
 
   onEdit(retailer) {
@@ -89,17 +89,11 @@ export class RetailerDetailsComponent implements OnInit {
     }
 
     switch(prop) {
-      case 'retailerId':
-        this.updationObject['retailerId'] = value;
+      case 'pathId':
+        this.updationObject['pathId'] = value;
         break;
-      case 'retailerName':
-        this.updationObject['retailerName'] = value;
-        break;
-      case 'companyName':
-        this.updationObject['companyName'] = value;
-        break;
-      case 'balance':
-        this.updationObject['balance'] = value;
+      case 'pathName':
+        this.updationObject['pathName'] = value;
         break;
     }
   }
@@ -115,13 +109,13 @@ export class RetailerDetailsComponent implements OnInit {
     console.log(this.updationObject);
     this.spinnerService.start();
     this.apiService.updateCall(
-      '/retailer',
-      this.retailerId,
+      '/path',
+      this.pathId,
       this.updationObject
     ).pipe(
       finalize(() => this.spinnerService.end())
     ).subscribe(response => {
-      this.retailer = response;
+      this.path = response;
       this.mode = Mode.display;
     });
   }
@@ -136,13 +130,14 @@ export class RetailerDetailsComponent implements OnInit {
 
     this.spinnerService.start();
     this.apiService.postCall(
-      '/retailer',
+      '/path',
       this.updationObject
     ).pipe(
       finalize(() => this.spinnerService.end())
     ).subscribe(response => {
       this.mode = Mode.display;
-      this._router.navigate(['dashboard', 'retailer']);
+      this._router.navigate(['dashboard', 'path']);
     });
   }
+
 }

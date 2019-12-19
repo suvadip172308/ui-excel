@@ -30,5 +30,14 @@ export const LINKS = [
   }, {
     name: 'delete-retailer',
     viewName: 'Delete Retailer'
+  }, {
+    name: 'path',
+    viewName: 'Show Path'
+  }, {
+    name: 'create-path',
+    viewName: 'Create Path'
+  }, {
+    name: 'delete-path',
+    viewName: 'Delete Path'
   }
 ];

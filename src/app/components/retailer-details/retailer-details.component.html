@@ -72,7 +72,8 @@
                 </mat-form-field>
               </td>
             </tr>
-            <tr class="row">
+            <tr *ngIf= "!isCreateMode"
+                class="row">
               <td class="left-col">
                 <span>Status</span>
                 <span class="asterisk">*</span>

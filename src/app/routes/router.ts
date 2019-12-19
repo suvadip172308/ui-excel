@@ -6,6 +6,8 @@ import { TransactionDetailsComponent } from '../components/transaction-details/t
 import { TransactionListComponent } from '../components/transaction-list/transaction-list.component';
 import { RetailerListComponent } from '../components/retailer-list/retailer-list.component';
 import { RetailerDetailsComponent } from '../components/retailer-details/retailer-details.component';
+import { PathListComponent } from '../components/path-list/path-list.component';
+import { PathDetailsComponent } from '../components/path-details/path-details.component';
 
 export const ROUTES: Routes = [
   {
@@ -39,16 +41,20 @@ export const ROUTES: Routes = [
         component: TransactionDetailsComponent
       },
       {
-        path: 'transaction/new',
-        component: RegisterComponent 
-      },
-      {
         path: 'retailer',
         component: RetailerListComponent
       },
       {
         path: 'retailer/:id',
         component: RetailerDetailsComponent
+      },
+      {
+        path: 'path',
+        component: PathListComponent
+      },
+      {
+        path: 'path/:id',
+        component: PathDetailsComponent
       }
     ]
   }
