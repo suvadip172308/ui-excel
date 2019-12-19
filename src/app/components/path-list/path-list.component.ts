@@ -6,11 +6,11 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { CommonService } from '../../services/common/common.service';
 
 @Component({
-  selector: 'app-retailer-list',
-  templateUrl: './retailer-list.component.html',
-  styleUrls: ['./retailer-list.component.scss']
+  selector: 'app-path-list',
+  templateUrl: './path-list.component.html',
+  styleUrls: ['./path-list.component.scss']
 })
-export class RetailerListComponent implements OnInit {
+export class PathListComponent implements OnInit {
   rows = [];
   totalElements = 0;
   pageSize = PAGE_SIZE;
@@ -21,7 +21,7 @@ export class RetailerListComponent implements OnInit {
     private apiService: ApiService,
     private commonService: CommonService,
     private _router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.onSetPage({offset: 0, pageSize: this.pageSize });
@@ -37,8 +37,8 @@ export class RetailerListComponent implements OnInit {
       { key: 'size', value: this.pageSize }
     ];
 
-    this.apiService.getCall('/retailer/', queryParam).subscribe(response => {
-      this.rows = this.getRetailer(response['data'], pageInfo);
+    this.apiService.getCall('/path/', queryParam).subscribe(response => {
+      this.rows = this.getPath(response['data'], pageInfo);
       this.totalElements = response['totalElements'];
       this.isLoading = false;
     });
@@ -49,23 +49,21 @@ export class RetailerListComponent implements OnInit {
       return;
     }
 
-    const id = event.row.retailerId;
+    const id = event.row.pathId;
     this._router.navigate(
-      ['dashboard', 'retailer', id],
+      ['dashboard', 'path', id],
       { queryParams: { mode: 'display'}}
     );
   }
 
-  getRetailer(retailers, pageInfo) {
-    return retailers.map((retailer, index) => {
+  getPath(paths, pageInfo) {
+    return paths.map((path, index) => {
       return {
-        id: retailer._id,
+        id: path._id,
         serialNo: this.commonService.getSerialNo(pageInfo, index),
-        retailerId: retailer.retailerId,
-        retailerName: retailer.retailerName,
-        companyName: retailer.companyName,
-        balance: retailer.balance,
-        isActivated: retailer.isActivated
+        pathId: path.pathId,
+        pathName: path.pathName,
+        isActive: path.isActive
       };
     });
   }

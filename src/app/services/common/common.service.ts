@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as _ from 'lodash';
 
 import { ApiService } from '../api/api.service';
 
@@ -30,5 +31,9 @@ export class CommonService {
 
   getSerialNo(pageInfo, index) {
     return (pageInfo.offset * pageInfo.pageSize) + index + 1;
+  }
+
+  isObjectEmpty(object) {
+    return _.isEmpty(object);
   }
 }

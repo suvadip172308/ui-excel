@@ -1,0 +1,37 @@
+<div class="path-container">
+  <ngx-datatable
+    class="material"
+    [rows]="rows"
+    [columnMode]="'flex'"
+    [headerHeight]="50"
+    [loadingIndicator]="isLoading"
+    [footerHeight]="'auto'"
+    [rowHeight]="'auto'"
+    [externalPaging]="true"
+    [count]="totalElements"
+    [limit]="pageSize"
+    [offset]="pageNumber"
+    (page)="onSetPage($event)"
+    (activate)="onSelectRow($event)">
+      <ngx-datatable-column name="Sl#" [flexGrow]="0.5">
+        <ng-template let-row="row" let-expanded='expanded' let-rowIndex='rowIndex' ngx-datatable-cell-template>
+          <span>{{row.serialNo}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Path#" [flexGrow]="3.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.pathId}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Path Name" [flexGrow]="4">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.pathName}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Status" [flexGrow]="4">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.isActive}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+  </ngx-datatable>
+</div>

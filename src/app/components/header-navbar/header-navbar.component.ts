@@ -51,17 +51,40 @@ export class HeaderNavbarComponent {
       case 'home':
         this._router.navigate(['dashboard']);
         break;
+      
       case 'transaction':
         this._router.navigate(['dashboard', 'transaction']);
         break;
+      
       case 'create-transaction':
         this._router.navigate(
           ['dashboard','transaction', 'new'],
           { queryParams: { mode: 'create'}}
         );
         break;
+      
       case 'retailer':
         this._router.navigate(['dashboard', 'retailer']);
+        break;
+      
+      case 'create-retailer':
+        this._router.navigate(
+          ['dashboard','retailer', 'new'],
+          { queryParams: { mode: 'create'}}
+        );
+        break;
+      
+      case 'path':
+        this._router.navigate(['dashboard', 'path']);
+        break;
+      
+      case 'create-path':
+        this._router.navigate(
+          ['dashboard','path', 'new'],
+          { queryParams: { mode: 'create'}}
+        );
+        break;
+      
       default:
         return;
     }

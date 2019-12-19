@@ -1,0 +1,71 @@
+<div class="path-details">
+  <mat-card class="card-elevation transaction-card">
+    <mat-card-header>
+      <div class="info-header">
+        <h2>Path Details</h2>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="info-container">
+        <table class="info-table-wrapper">
+          <tr class="row">
+            <td class="left-col">
+              <span>Path#</span>
+              <span class="asterisk">*</span>
+            </td>
+            <td class="right-col">
+              <span *ngIf="isDisplayMode">{{path?.pathId}}</span>
+              <mat-form-field *ngIf="isEditMode || isCreateMode" 
+                class="input-wrapper">
+                <input matInput 
+                  name="pathId"
+                  [value]="isEditMode ? path?.pathId : ''"
+                  (input)="onInput($event.target.value, 'pathId')">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr class="row">
+            <td class="left-col">
+              <span>Path Name</span>
+              <span class="asterisk">*</span>
+            </td>
+            <td class="right-col">
+              <span *ngIf="isDisplayMode">{{path?.pathName}}</span>
+              <mat-form-field *ngIf="isEditMode || isCreateMode" 
+                class="input-wrapper">
+                <input matInput 
+                  name="pathName"
+                  [value]="isEditMode ? path?.pathName : ''"
+                  (input)="onInput($event.target.value, 'pathName')">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr *ngIf= "!isCreateMode"
+              class="row">
+            <td class="left-col">
+              <span>Status</span>
+              <span class="asterisk">*</span>
+            </td>
+            <td class="right-col">
+              <span>{{path?.isActive ? 'Active' : 'Inactive'}}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="info-footer">
+        <button mat-raised-button
+          color="accent"
+          class="back-info-button"
+          (click)="onBack()">Back</button>
+        <button mat-raised-button
+          color="accent"
+          class="edit-info-button"
+          (click)="isEditMode ? onDone() : isCreateMode ? onCreate() : onEdit(path)">
+          {{isEditMode ? 'Done' : isCreateMode ? 'Create' : 'Edit'}}
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
