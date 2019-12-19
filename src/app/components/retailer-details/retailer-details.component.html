@@ -1,0 +1,71 @@
+<div class="retailer-details">
+    <mat-card class="card-elevation transaction-card">
+      <mat-card-header>
+        <div class="info-header">
+          <h2>Retailer Details</h2>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="info-container">
+          <table class="info-table-wrapper">
+            <tr class="row">
+              <td class="left-col">
+                <span>Retailer#</span>
+                <span class="asterisk">*</span>
+              </td>
+              <td class="right-col">
+                <span>{{retailer?.retailerId}}</span>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="left-col">
+                <span>Retailer Name</span>
+                <span class="asterisk">*</span>
+              </td>
+              <td class="right-col">
+                <span>{{retailer?.retailerName}}</span>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="left-col">
+                <span>Company</span>
+                <span class="asterisk">*</span>
+              </td>
+              <td class="right-col">
+                <span>{{retailer?.companyName}}</span>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="left-col">
+                <span>Balance</span>
+                <span class="asterisk">*</span>
+              </td>
+              <td class="right-col">
+                <span>{{retailer?.balance}}</span>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="left-col">
+                <span>Status</span>
+                <span class="asterisk">*</span>
+              </td>
+              <td class="right-col">
+                <span>{{retailer?.isActivated ? 'Active' : 'Inactive'}}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="info-footer">
+          <button mat-raised-button
+            color="accent"
+            class="back-info-button">Back</button>
+          <button mat-raised-button
+            color="accent"
+            class="edit-info-button">Done</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  

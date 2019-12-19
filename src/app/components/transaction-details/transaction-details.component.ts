@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/api/api.service';
 import { SpinnerService } from '../../services/spinner/spinner.service';
-import { TransactionMode } from '../../models/common.model';
+import { Mode } from '../../models/common.model';
 
 
 @Component({
@@ -14,9 +14,7 @@ import { TransactionMode } from '../../models/common.model';
   styleUrls: ['./transaction-details.component.scss']
 })
 export class TransactionDetailsComponent implements OnInit {
-  //isEditMode = false;
-  //isCreateMode = false;
-  mode = TransactionMode.display;
+  mode = Mode.display;
   updationObject = {};
   transactionId: string;
   transaction: any;
@@ -45,15 +43,15 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
   get isCreateMode() {
-    return this.mode === TransactionMode.create;
+    return this.mode === Mode.create;
   }
 
   get isEditMode() {
-    return this.mode === TransactionMode.edit;
+    return this.mode === Mode.edit;
   }
 
   get isDisplayMode() {
-    return this.mode === TransactionMode.display;
+    return this.mode === Mode.display;
   }
 
   getTransaction(id: string) {
@@ -73,14 +71,14 @@ export class TransactionDetailsComponent implements OnInit {
 
   onBack() {
     if (this.isEditMode) {
-      this.mode = TransactionMode.display
+      this.mode = Mode.display
       return;
     }
     this._router.navigate(['dashboard']);
   }
 
   onEdit(transaction) {
-    this.mode = TransactionMode.edit;
+    this.mode = Mode.edit;
   }
 
   onInput(value, prop) {
@@ -132,7 +130,7 @@ export class TransactionDetailsComponent implements OnInit {
       finalize(() => this.spinnerService.end())
     ).subscribe(response => {
       this.transaction = response;
-      this.mode = TransactionMode.display;
+      this.mode = Mode.display;
     });
   }
 
@@ -144,7 +142,7 @@ export class TransactionDetailsComponent implements OnInit {
     ).pipe(
       finalize(() => this.spinnerService.end())
     ).subscribe(response => {
-      this.mode = TransactionMode.display;
+      this.mode = Mode.display;
       this._router.navigate(['dashboard', 'transaction']);
     });
   }

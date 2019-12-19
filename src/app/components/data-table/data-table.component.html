@@ -1,0 +1,16 @@
+<ngx-datatable #dataTable
+  class="material"
+  [rows]="rows"
+  [columnMode]="'flex'"
+  [headerHeight]="50"
+  [loadingIndicator]="isLoading"
+  [footerHeight]="'auto'"
+  [rowHeight]="'auto'"
+  [externalPaging]="true"
+  [count]="totalElements"
+  [limit]="pageSize"
+  [offset]="pageNumber"
+  (page)="onSetPage($event)"
+  (activate)="onSelectRow($event)">
+    <ng-content></ng-content>
+</ngx-datatable>

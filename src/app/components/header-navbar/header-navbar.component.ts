@@ -60,7 +60,7 @@ export class HeaderNavbarComponent {
           { queryParams: { mode: 'create'}}
         );
         break;
-      case 'reatiler':
+      case 'retailer':
         this._router.navigate(['dashboard', 'retailer']);
       default:
         return;

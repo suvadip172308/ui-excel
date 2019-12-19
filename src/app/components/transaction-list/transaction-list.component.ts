@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CommonService } from '../../services/common/common.service';
@@ -12,7 +12,6 @@ import { Transaction } from '../../models/common.model';
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
-  @ViewChild('dataTable', {static: true}) table;
   isLoading: boolean = false;
   pageSize = PAGE_SIZE;
   totalElements = 0;
@@ -29,10 +28,6 @@ export class TransactionListComponent implements OnInit {
 
   ngOnInit() {
     this.setPage({offset: 0, pageSize: this.pageSize });
-  }
-
-  getSerialNo(pageInfo, index) {
-    return (pageInfo.offset * pageInfo.pageSize) + index + 1;
   }
 
   setPage(pageInfo) {
@@ -56,7 +51,7 @@ export class TransactionListComponent implements OnInit {
     return transactions.map((transaction, index) => {
       return {
         id: transaction._id,
-        serialNo: this.getSerialNo(pageInfo, index),
+        serialNo: this.commonService.getSerialNo(pageInfo, index),
         date: this.commonService.getDate(transaction.creationDate),
         retailerName: transaction.retailerName,
         companyName: transaction.companyName,
