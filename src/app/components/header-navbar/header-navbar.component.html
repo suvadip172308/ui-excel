@@ -1,11 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="false"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="'over'"
-    [opened]="isOpened">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="'over'" [opened]="isOpened">
     <mat-toolbar>
       <div class="info-wrapper">
         <div class="user-name">{{getName((data$ | async)?.name)}}</div>
@@ -14,25 +9,27 @@
     </mat-toolbar>
     <mat-divider></mat-divider>
     <mat-nav-list>
-      <div *ngFor="let link of links"
-        (click)="drawer.close()">
-        <a mat-list-item
-          (click)="onNavigation(link)">{{link.viewName}}</a>
+      <div *ngFor="let link of links" class="menu" [class.has-inner-menu]="link.innerMenus.length > 0"
+        [class.open]="isMenuOpen(link.name)">
+        <a mat-list-item (click)="onNavigation(link)">{{link.viewName}}</a>
+        <div *ngIf="link.innerMenus.length > 0" class="sub-menu">
+          <mat-nav-list>
+            <div *ngFor="let ilink of link.innerMenus">
+              <a mat-list-item (click)="onNavigation(ilink)"> {{ ilink.viewName }} </a>
+            </div>
+          </mat-nav-list>
+        </div>
       </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="accent">
-      <button type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button (click)="drawer.toggle()">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Excel</span>
       <span class="spacer"></span>
-      <button mat-button
-        class="logout"
-        (click)="onLogout()">
+      <button mat-button class="logout" (click)="onLogout()">
         <mat-icon class="icon-account">exit_to_app</mat-icon>
       </button>
     </mat-toolbar>

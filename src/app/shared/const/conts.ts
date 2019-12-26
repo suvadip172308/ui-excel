@@ -11,33 +11,55 @@ export const PAGE_SIZE: number = 10;
 export const LINKS = [
   {
     name: 'home',
-    viewName: 'Home' 
-  }, {
-    name: 'transaction',
-    viewName: 'Show Transaction'
-  }, {
-    name: 'create-transaction',
-    viewName: 'Create Transaction'
-  }, {
-    name: 'delete-transaction',
-    viewName: 'Delete Transaction'
-  }, {
-    name: 'retailer',
-    viewName: 'Show Retailer'
-  }, {
-    name: 'create-retailer',
-    viewName: 'Create Retailer'
-  }, {
-    name: 'delete-retailer',
-    viewName: 'Delete Retailer'
-  }, {
-    name: 'path',
-    viewName: 'Show Path'
-  }, {
-    name: 'create-path',
-    viewName: 'Create Path'
-  }, {
-    name: 'delete-path',
-    viewName: 'Delete Path'
+    viewName: 'Home',
+    innerMenus: []
+  },
+  {
+    name: '#transaction',
+    viewName: 'Transaction',
+    innerMenus: [
+      {
+        name: 'transaction',
+        viewName: 'Show Transaction'
+      }, {
+        name: 'create-transaction',
+        viewName: 'Create Transaction'
+      }, {
+        name: 'delete-transaction',
+        viewName: 'Delete Transaction'
+      }
+    ]
+  },
+  {
+    name: '#retailer',
+    viewName: 'Retailer',
+    innerMenus: [
+      {
+        name: 'retailer',
+        viewName: 'Show Retailer'
+      }, {
+        name: 'create-retailer',
+        viewName: 'Create Retailer'
+      }, {
+        name: 'delete-retailer',
+        viewName: 'Delete Retailer'
+      }
+    ]
+  },
+  {
+    name: '#path',
+    viewName: 'Path',
+    innerMenus: [
+      {
+        name: 'path',
+        viewName: 'Show Path'
+      }, {
+        name: 'create-path',
+        viewName: 'Create Path'
+      }, {
+        name: 'delete-path',
+        viewName: 'Delete Path'
+      }
+    ]
   }
 ];
