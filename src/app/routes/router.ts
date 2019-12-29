@@ -8,6 +8,7 @@ import { RetailerListComponent } from '../components/retailer-list/retailer-list
 import { RetailerDetailsComponent } from '../components/retailer-details/retailer-details.component';
 import { PathListComponent } from '../components/path-list/path-list.component';
 import { PathDetailsComponent } from '../components/path-details/path-details.component';
+import { UploadFileComponent } from '../components/upload-file/upload-file.component';
 
 export const ROUTES: Routes = [
   {
@@ -55,7 +56,11 @@ export const ROUTES: Routes = [
       {
         path: 'path/:id',
         component: PathDetailsComponent
-      }
+      },
+      {
+        path: 'upload',
+        component: UploadFileComponent
+      },
     ]
   }
 ];

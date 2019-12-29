@@ -99,6 +99,12 @@ export class HeaderNavbarComponent {
             { queryParams: { mode: 'create' } }
           );
           break;
+        
+        case 'upload':
+          this._router.navigate(
+            ['dashboard', 'upload']
+          );
+          break;
 
         default:
           return;

@@ -30,6 +30,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { RetailerDetailsComponent } from './components/retailer-details/retailer-details.component';
 import { PathListComponent } from './components/path-list/path-list.component';
 import { PathDetailsComponent } from './components/path-details/path-details.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { PathDetailsComponent } from './components/path-details/path-details.com
     RetailerDetailsComponent,
     PathListComponent,
     PathDetailsComponent,
+    UploadFileComponent,
   ],
   imports: [
     BrowserModule,
