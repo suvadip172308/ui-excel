@@ -30,7 +30,6 @@ export class UploadFileComponent implements OnInit {
   }
 
   fileInputChange(fileInputEvent: any) {
-    console.log(fileInputEvent.target.files[0]);
     this.file = fileInputEvent.target.files[0];
     this.fileName = this.file.name;
   }
@@ -64,5 +63,4 @@ export class UploadFileComponent implements OnInit {
       this.spinnerService.end();
     });
   }
-
 }

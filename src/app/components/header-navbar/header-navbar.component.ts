@@ -60,7 +60,6 @@ export class HeaderNavbarComponent {
       } else {
         this.openMenus.push(link.name)
       }
-      console.log(this.openMenus);
     } else {
       switch (link.name) {
         case 'home':
