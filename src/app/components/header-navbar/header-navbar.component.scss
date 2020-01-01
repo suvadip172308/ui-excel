@@ -38,7 +38,7 @@
     width: 20px;
     transform: translateY(-50%);
     text-align: center;
-    font-size: 30px;
+    font-size: 60px;
     line-height: 1;
     margin-top: 0px;
     opacity: 0.8;
@@ -48,6 +48,10 @@
     max-height: 0;
     overflow: hidden;
     background-color: #fafafa;
+    
+    .mat-list-item {
+      font-size: 13px;
+    }
   }
 
   &.open {
@@ -61,7 +65,7 @@
       width: 20px;
       transform: translateY(-50%) rotate(-180deg);
       text-align: center;
-      font-size: 30px;
+      font-size: 60px;
       line-height: 1;
       margin-top: 20px;
       opacity: 0.8;

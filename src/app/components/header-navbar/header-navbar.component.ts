@@ -60,7 +60,6 @@ export class HeaderNavbarComponent {
       } else {
         this.openMenus.push(link.name)
       }
-      console.log(this.openMenus);
     } else {
       switch (link.name) {
         case 'home':
@@ -97,6 +96,12 @@ export class HeaderNavbarComponent {
           this._router.navigate(
             ['dashboard', 'path', 'new'],
             { queryParams: { mode: 'create' } }
+          );
+          break;
+        
+        case 'upload':
+          this._router.navigate(
+            ['dashboard', 'upload']
           );
           break;
 

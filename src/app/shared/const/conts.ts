@@ -7,11 +7,17 @@ export const SPINNER_DEFAULT_CONFIG: SpinnerConfig = {
 }
 
 export const PAGE_SIZE: number = 10;
+export const FILE_SELECTION = 'No. file selected';
 
 export const LINKS = [
   {
     name: 'home',
     viewName: 'Home',
+    innerMenus: []
+  },
+  {
+    name: 'upload',
+    viewName: 'Upload File',
     innerMenus: []
   },
   {
@@ -61,5 +67,20 @@ export const LINKS = [
         viewName: 'Delete Path'
       }
     ]
-  }
+  },
+];
+
+export const UPLOAD_TYPES = [
+  {
+    value: 'transaction',
+    viewValue: 'Transaction'
+  },
+  {
+    value: 'retailer',
+    viewValue: 'Retailer'
+  },
+  {
+    value: 'path',
+    viewValue: 'Route'
+  },
 ];

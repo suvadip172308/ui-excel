@@ -106,7 +106,6 @@ export class PathDetailsComponent implements OnInit {
       return;
     }
 
-    console.log(this.updationObject);
     this.spinnerService.start();
     this.apiService.updateCall(
       '/path',
