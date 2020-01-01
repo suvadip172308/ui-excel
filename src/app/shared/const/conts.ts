@@ -80,7 +80,7 @@ export const UPLOAD_TYPES = [
     viewValue: 'Retailer'
   },
   {
-    value: 'route',
+    value: 'path',
     viewValue: 'Route'
   },
 ];

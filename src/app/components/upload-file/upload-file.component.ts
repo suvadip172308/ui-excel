@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatOption, MatSelectChange } from '@angular/material';
 
 import { CommonService } from '../../services/common/common.service';
+import { SpinnerService } from '../../services/spinner/spinner.service';
+import { ApiService } from 'src/app/services/api/api.service';
 import { UPLOAD_TYPES, FILE_SELECTION } from '../../shared/const/conts';
 
 @Component({
@@ -17,6 +19,8 @@ export class UploadFileComponent implements OnInit {
   
   constructor(
     private commonService: CommonService,
+    private apiService: ApiService,
+    private spinnerService: SpinnerService
   ) { }
 
   ngOnInit() {}
@@ -41,6 +45,24 @@ export class UploadFileComponent implements OnInit {
       this.commonService.openSnackBar('Select a file or file type');
       return;
     }
+
+    let formData = new FormData();
+  
+    formData.append('file', this.file);
+    formData.append('collection', this.selectedType);
+
+    this.spinnerService.start();
+    this.apiService.postCall('/files', formData).subscribe(response => {
+      const resList = response.body as any;
+
+      if(resList.length) {
+        this.commonService.openSnackBar('File Upload Succesful');
+      } else {
+        this.commonService.openSnackBar('Error: File Upload Failed');
+      }
+
+      this.spinnerService.end();
+    });
   }
 
 }
