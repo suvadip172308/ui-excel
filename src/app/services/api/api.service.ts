@@ -11,7 +11,7 @@ import { QueryParams } from '../../models/common.model';
 export class ApiService {
   constructor(private http: HttpClient) { };
 
-  private getUrl(url: string, queryParams?: QueryParams[]) {
+  public getUrl(url: string, queryParams?: QueryParams[]) {
     let query = '';
 
     if (queryParams) {

@@ -16,6 +16,11 @@ export const LINKS = [
     innerMenus: []
   },
   {
+    name: 'download',
+    viewName: 'Download File',
+    innerMenus: []
+  },
+  {
     name: '#transaction',
     viewName: 'Transaction',
     innerMenus: [

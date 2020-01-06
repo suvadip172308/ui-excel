@@ -33,6 +33,7 @@ import { PathDetailsComponent } from './components/path-details/path-details.com
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { OperatorListComponent } from './components/operator-list/operator-list.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { DownloadFileComponent } from './components/download-file/download-file.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     UploadFileComponent,
     OperatorListComponent,
     ConfirmDialogComponent,
+    DownloadFileComponent,
   ],
   imports: [
     BrowserModule,

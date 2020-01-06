@@ -1,0 +1,48 @@
+<div class="main-div">
+  <mat-card class="download-card">
+    <mat-card-header>
+      <div class="download-header">
+        <h1>Download</h1>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="download">
+        <table class="download-table" cellspacing="0">
+          <tr class="row">
+            <td>
+              <mat-form-field class="input-wrapper">
+                <mat-select
+                  placeholder="Select"
+                  (selectionChange)="onSelectFileType($event.value)">
+                  <mat-option *ngFor="let type of downloadFileTypes"
+                    [value]="type.value">{{type.viewValue}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr class="row">
+            <td>
+              <span class="page-container">
+                <mat-form-field class="download-pages">
+                  <input matInput placeholder="From Page"
+                    (input)="onInput($event.target.value, 'from')">
+                </mat-form-field>
+                <mat-form-field class="download-pages">
+                  <input matInput placeholder="To Page"
+                    (input)="onInput($event.target.value, 'to')">
+                </mat-form-field>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-container">
+      <button mat-raised-button
+        color="accent"
+        class="download-button"
+        (click)="onDownload()">Download</button>
+    </mat-card-actions>
+  </mat-card>
+<div>
+
