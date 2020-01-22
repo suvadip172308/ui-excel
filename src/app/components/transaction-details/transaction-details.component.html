@@ -7,7 +7,7 @@
     </mat-card-header>
     <mat-card-content>
       <div class="info-container">
-        <table class="info-table-wrapper">
+        <table class="info-table-wrapper" [class.edit-mode]="isEditMode || isCreateMode">
           <tr class="row">
             <td class="left-col">
               <span>Retailer#</span>
@@ -15,11 +15,8 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.retailerId}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="retailer-id"
-                  [value]="isEditMode ? transaction?.retailerId : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="retailer-id" [value]="isEditMode ? transaction?.retailerId : ''"
                   (input)="onInput($event.target.value, 'retailerId')">
               </mat-form-field>
             </td>
@@ -31,11 +28,8 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.retailerName}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="retailer-name"
-                  [value]="isEditMode ? transaction?.retailerName : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="retailer-name" [value]="isEditMode ? transaction?.retailerName : ''"
                   (input)="onInput($event.target.value, 'retailerName')">
               </mat-form-field>
             </td>
@@ -47,11 +41,8 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.companyName}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="company-name"
-                  [value]="isEditMode ? transaction?.companyName : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="company-name" [value]="isEditMode ? transaction?.companyName : ''"
                   (input)="onInput($event.target.value, 'companyName')">
               </mat-form-field>
             </td>
@@ -63,11 +54,8 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.routeCode}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="route-code"
-                  [value]="isEditMode ? transaction?.routeCode : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="route-code" [value]="isEditMode ? transaction?.routeCode : ''"
                   (input)="onInput($event.target.value, 'routeCode')">
               </mat-form-field>
             </td>
@@ -79,11 +67,8 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.routeName}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="route-name"
-                  [value]="isEditMode ? transaction?.routeName : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="route-name" [value]="isEditMode ? transaction?.routeName : ''"
                   (input)="onInput($event.target.value, 'routeName')">
               </mat-form-field>
             </td>
@@ -95,11 +80,8 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.invoiceId}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="invoice-id"
-                  [value]="isEditMode ? transaction?.invoiceId : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="invoice-id" [value]="isEditMode ? transaction?.invoiceId : ''"
                   (input)="onInput($event.target.value, 'invoiceId')">
               </mat-form-field>
             </td>
@@ -111,11 +93,8 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.invoiceAmount}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="invoice-amount"
-                  [value]="isEditMode ? transaction?.invoiceAmount : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="invoice-amount" [value]="isEditMode ? transaction?.invoiceAmount : ''"
                   (input)="onInput($event.target.value, 'invoiceAmount')">
               </mat-form-field>
             </td>
@@ -127,11 +106,8 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.payment}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="payment"
-                  [value]="isEditMode ? transaction?.payment : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="payment" [value]="isEditMode ? transaction?.payment : ''"
                   (input)="onInput($event.target.value, 'payment')">
               </mat-form-field>
             </td>
@@ -143,11 +119,8 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.agentName}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="agent-name"
-                  [value]="isEditMode ? transaction?.agentName : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="agent-name" [value]="isEditMode ? transaction?.agentName : ''"
                   (input)="onInput($event.target.value, 'agentName')">
               </mat-form-field>
             </td>
@@ -159,24 +132,19 @@
             </td>
             <td class="right-col">
               <span *ngIf="isDisplayMode">{{transaction?.operatorName}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                class="input-wrapper">
-                <input matInput 
-                  name="operator-name"
-                  [value]="isEditMode ? transaction?.operatorName : ''"
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="operator-name" [value]="isEditMode ? transaction?.operatorName : ''"
                   (input)="onInput($event.target.value, 'operatorName')">
               </mat-form-field>
             </td>
           </tr>
-          <tr *ngIf="!isCreateMode"
-              class="row">
+          <tr *ngIf="!isCreateMode" class="row">
             <td class="left-col">Created On</td>
             <td class="right-col">
               <span>{{transaction?.creationDate | date}}</span>
             </td>
           </tr>
-          <tr *ngIf="transaction?.isUpdated"
-              class="row">
+          <tr *ngIf="transaction?.isUpdated" class="row">
             <td class="left-col">Updated On</td>
             <td class="right-col">{{transaction?.updationDate | date}}</td>
           </tr>
@@ -185,16 +153,13 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="info-footer">
-        <button mat-raised-button
-          color="accent"
-          class="back-info-button"
-          (click)="onBack()">Back</button>
-        <button mat-raised-button
-          color="accent"
-          class="edit-info-button"
+        <button mat-raised-button class="back-info-button" (click)="onBack()">Back</button>
+        <button mat-raised-button color="accent" class="edit-info-button"
           (click)="isEditMode ? onDone() : isCreateMode ? onCreate() : onEdit(transaction)">
           {{isEditMode ? 'Done' : isCreateMode ? 'Create' : 'Edit'}}
         </button>
+        <button mat-raised-button color="primary" *ngIf="authService.isAdmin()" class="back-info-button"
+          (click)="onDelete()">Delete</button>
       </div>
     </mat-card-actions>
   </mat-card>

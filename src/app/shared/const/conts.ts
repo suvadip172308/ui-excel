@@ -26,13 +26,16 @@ export const LINKS = [
     innerMenus: [
       {
         name: 'transaction',
-        viewName: 'Show Transaction'
+        viewName: 'Show Transaction',
+        adminMenu: false
       }, {
         name: 'create-transaction',
-        viewName: 'Create Transaction'
+        viewName: 'Create Transaction',
+        adminMenu: false
       }, {
         name: 'delete-transaction',
-        viewName: 'Delete Transaction'
+        viewName: 'Delete Transaction',
+        adminMenu: true
       }
     ]
   },
@@ -42,13 +45,16 @@ export const LINKS = [
     innerMenus: [
       {
         name: 'retailer',
-        viewName: 'Show Retailer'
+        viewName: 'Show Retailer',
+        adminMenu: false
       }, {
         name: 'create-retailer',
-        viewName: 'Create Retailer'
+        viewName: 'Create Retailer',
+        adminMenu: false
       }, {
         name: 'delete-retailer',
-        viewName: 'Delete Retailer'
+        viewName: 'Delete Retailer',
+        adminMenu: true
       }
     ]
   },
@@ -58,13 +64,16 @@ export const LINKS = [
     innerMenus: [
       {
         name: 'path',
-        viewName: 'Show Path'
+        viewName: 'Show Path',
+        adminMenu: false
       }, {
         name: 'create-path',
-        viewName: 'Create Path'
+        viewName: 'Create Path',
+        adminMenu: false
       }, {
         name: 'delete-path',
-        viewName: 'Delete Path'
+        viewName: 'Delete Path',
+        adminMenu: true
       }
     ]
   },

@@ -20,7 +20,7 @@
   .info-container {
     width: 100%;
 
-    .info-table-wrapper{
+    .info-table-wrapper {
       min-height: 90vh;
       width: 45%;
       margin: auto;
@@ -39,19 +39,24 @@
           white-space: nowrap;
         }
       }
+
+      &:not(.edit-mode) {
+        .asterisk {
+          display: none !important;
+        }
+      }
     }
   }
 
   .info-footer {
-    margin-bottom: 40px;
-    text-align: center;
+    margin: 20px 0 40px;
+    display: flex;
+    justify-content: center;
 
-    .back-info-button {
+    button {
+      margin: 0 4px !important;
       width: 8em;
-    }
 
-    .edit-info-button {
-      width: 8em;
     }
   }
 }

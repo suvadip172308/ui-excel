@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/api/api.service';
 import { SpinnerService } from '../../services/spinner/spinner.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Mode } from '../../models/common.model';
 
 
@@ -18,10 +19,11 @@ export class TransactionDetailsComponent implements OnInit {
   updationObject = {};
   transactionId: string;
   transaction: any;
-  
+
   constructor(
     private apiService: ApiService,
     private spinnerService: SpinnerService,
+    public authService: AuthService,
     private route: ActivatedRoute,
     private _router: Router
   ) { }
@@ -32,8 +34,8 @@ export class TransactionDetailsComponent implements OnInit {
       .subscribe(params => {
         const mode = params.mode.trim();
         this.mode = mode;
-    });
-    
+      });
+
     if (!this.isCreateMode) {
       this.route.params.subscribe(param => {
         this.transactionId = param['id'];
@@ -61,12 +63,12 @@ export class TransactionDetailsComponent implements OnInit {
 
     this.spinnerService.start();
     this.apiService.getCall(`/transaction/${id}`)
-    .pipe(
-      take(1),
-      finalize(() => this.spinnerService.end())
-    ).subscribe(data => {
-      this.transaction = data;
-    });
+      .pipe(
+        take(1),
+        finalize(() => this.spinnerService.end())
+      ).subscribe(data => {
+        this.transaction = data;
+      });
   }
 
   onBack() {
@@ -86,7 +88,7 @@ export class TransactionDetailsComponent implements OnInit {
       return;
     }
 
-    switch(prop) {
+    switch (prop) {
       case 'retailerId':
         this.updationObject['retailerId'] = value;
         break;
@@ -145,5 +147,10 @@ export class TransactionDetailsComponent implements OnInit {
       this.mode = Mode.display;
       this._router.navigate(['dashboard', 'transaction']);
     });
+  }
+
+  onDelete() {
+    /** Todo: Implement delete functionality */
+    console.log('Not implemented yet.');
   }
 }
