@@ -37,7 +37,7 @@ export class HeaderNavbarComponent {
     private _router: Router,
     private breakpointObserver: BreakpointObserver,
     private store: Store<AppState>,
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -98,7 +98,7 @@ export class HeaderNavbarComponent {
             { queryParams: { mode: 'create' } }
           );
           break;
-        
+
         case 'upload':
           this._router.navigate(
             ['dashboard', 'upload']
