@@ -19,6 +19,14 @@ export interface Transaction {
   payment: number,
 }
 
+export interface User {
+  companies: string[],
+  isActive: boolean,
+  isAdmin: boolean,
+  userName: string,
+  name: string
+}
+
 export interface QueryParams {
   key: string,
   value: any

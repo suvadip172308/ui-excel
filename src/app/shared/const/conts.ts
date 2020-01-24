@@ -12,12 +12,7 @@ export const FILE_SELECTION = 'No. file selected';
 export const LINKS = [
   {
     name: 'home',
-    viewName: 'Home',
-    innerMenus: []
-  },
-  {
-    name: 'upload',
-    viewName: 'Upload File',
+    viewName: 'Dashboard',
     innerMenus: []
   },
   {
@@ -77,6 +72,17 @@ export const LINKS = [
       }
     ]
   },
+  {
+    name: 'users',
+    viewName: 'Manage Users',
+    adminMenu: true,
+    innerMenus: []
+  },
+  {
+    name: 'upload',
+    viewName: 'Upload File',
+    innerMenus: []
+  }
 ];
 
 export const UPLOAD_TYPES = [

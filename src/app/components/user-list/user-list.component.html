@@ -1,47 +1,40 @@
-<div class="transaction-container">
+<div class="users-container">
   <div>
     <ngx-datatable class="material flat" [rows]="rows" [columnMode]="'flex'" [headerHeight]="50"
       [loadingIndicator]="isLoading" [footerHeight]="'auto'" [rowHeight]="'auto'" [externalPaging]="true"
-      [count]="totalElements" [limit]="pageSize" [offset]="pageNumber" (page)="setPage($event)"
-      (activate)="onSelectRow($event)">
+      [count]="totalElements" [limit]="pageSize" [offset]="pageNumber" (page)="setPage($event)">
       <ngx-datatable-column name="Sl#" [flexGrow]="0.5">
         <ng-template let-row="row" let-expanded='expanded' let-rowIndex='rowIndex' ngx-datatable-cell-template>
           <span>{{row.serialNo}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Retailer" [flexGrow]="2.5">
+      <ngx-datatable-column name="Name" [flexGrow]="2.5">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-          <span>{{row.retailerName}}</span>
+          <span>{{row.name}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Company" [flexGrow]="1">
+      <ngx-datatable-column name="Username" [flexGrow]="1">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-          <span>{{row.companyName}}</span>
+          <span>{{row.userName}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Route" [flexGrow]="2">
+      <ngx-datatable-column name="Companies" [flexGrow]="2">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-          <span>{{row.routeName}}</span>
+          <span>{{row.companies.join(', ')}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Agent" [flexGrow]="2">
+      <ngx-datatable-column name="Status" [flexGrow]="1">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-          <span>{{row.agentName}}</span>
+          <span>{{row.isActive ? 'Active' : 'Inactive'}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Invoice Amount" [flexGrow]="1.5">
+      <ngx-datatable-column name="" [flexGrow]="2.5">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-          <span>{{row.invoiceAmount}}</span>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="Payment" [flexGrow]="1">
-        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-          <span>{{row.payment}}</span>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="Date" [flexGrow]="1.5">
-        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-          <span>{{row.date}}</span>
+
+          <button class="btn act" *ngIf="!row.isActive" (click)="onAct(row, '1')">Activate</button>
+          <button class="btn deact" *ngIf="row.isActive" (click)="onAct(row, '2')">Deactivate</button>
+          <button class="btn del" (click)="onAct(row, '3')">Delete</button>
+
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

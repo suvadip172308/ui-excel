@@ -1,5 +1,6 @@
 .sidenav-container {
   min-height: 100vh;
+  background-color: #fff;
 
   .spacer {
     flex: 1 1 auto;
@@ -7,12 +8,13 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 260px;
+
+  .mat-toolbar {
+    background: inherit;
+  }
 }
 
-.sidenav .mat-toolbar {
-  background: inherit;
-}
 
 .mat-toolbar.mat-primary {
   position: sticky;
@@ -21,53 +23,64 @@
 }
 
 .info-wrapper {
+  width: 100%;
+
   .user-role {
     font-size: 12px;
   }
 }
 
-.menu.has-inner-menu {
-  position: relative;
+.sidenav-menu-list {
+  padding-top: 0;
 
-  &::after {
-    content: '\02D1';
-    position: absolute;
-    right: 6px;
-    top: 12px;
-    height: 20px;
-    width: 20px;
-    transform: translateY(-50%);
-    text-align: center;
-    font-size: 36px;
-    line-height: 1;
-    margin-top: 0px;
-    opacity: 0.8;
-  }
+  .menu {
+    border-bottom: 1px solid #f8f8f8;
 
-  .sub-menu {
-    max-height: 0;
-    overflow: hidden;
-    background-color: #fafafa;
 
-    .mat-list-item {
-      font-size: 13px;
+    &.has-inner-menu {
+      position: relative;
+
+      &::after {
+        content: '\02D1';
+        position: absolute;
+        right: 6px;
+        top: 12px;
+        height: 20px;
+        width: 20px;
+        transform: translateY(-50%);
+        text-align: center;
+        font-size: 36px;
+        line-height: 1;
+        margin-top: 0px;
+        opacity: 0.8;
+      }
+
+      .sub-menu {
+        max-height: 0;
+        overflow: hidden;
+        background-color: #fafafa;
+
+        .mat-list-item {
+          font-size: 13px;
+        }
+      }
+
+      &.open {
+
+        &::after {
+          transform: translateY(-50%) rotate(-180deg);
+          margin-top: 24px;
+        }
+
+        .sub-menu {
+          transition: all 0.3s ease-in-out;
+          max-height: 1000px;
+          overflow: auto;
+        }
+
+        // display: none;
+
+      }
     }
-  }
-
-  &.open {
-
-    &::after {
-      transform: translateY(-50%) rotate(-180deg);
-      margin-top: 24px;
-    }
-
-    .sub-menu {
-      transition: all 0.3s ease-in-out;
-      max-height: 1000px;
-      overflow: auto;
-    }
-
-    // display: none;
-
   }
 }

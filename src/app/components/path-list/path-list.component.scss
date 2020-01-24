@@ -1,11 +1,18 @@
 :host {
   display: block;
+
   .ngx-datatable {
     width: 90%;
     margin: 15px auto;
+
+    &.flat {
+      margin: 0;
+      width: 100%;
+      box-shadow: none;
+    }
   }
 }
-  
+
 :host ::ng-deep datatable-body-cell {
   .datatable-body-cell-label {
     span {

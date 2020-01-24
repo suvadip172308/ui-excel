@@ -8,10 +8,12 @@
       </div>
     </mat-toolbar>
     <mat-divider></mat-divider>
-    <mat-nav-list>
+    <mat-nav-list class="sidenav-menu-list">
       <div *ngFor="let link of links" class="menu" [class.has-inner-menu]="link.innerMenus.length > 0"
         [class.open]="isMenuOpen(link.name)">
-        <a mat-list-item (click)="onNavigation(link)">{{link.viewName}}</a>
+        <a mat-list-item (click)="onNavigation(link)"
+          *ngIf="authService.isAdmin() && link.adminMenu">{{link.viewName}}</a>
+        <a mat-list-item (click)="onNavigation(link)" *ngIf="!link.adminMenu">{{link.viewName}}</a>
         <div *ngIf="link.innerMenus.length > 0" class="sub-menu">
           <mat-nav-list>
             <div *ngFor="let ilink of link.innerMenus">

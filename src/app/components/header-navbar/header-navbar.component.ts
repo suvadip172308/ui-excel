@@ -105,6 +105,10 @@ export class HeaderNavbarComponent {
           );
           break;
 
+        case 'users':
+          this._router.navigate(['dashboard', 'users']);
+          break;
+
         default:
           return;
       }
