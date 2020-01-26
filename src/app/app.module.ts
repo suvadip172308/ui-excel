@@ -31,6 +31,7 @@ import { RetailerDetailsComponent } from './components/retailer-details/retailer
 import { PathListComponent } from './components/path-list/path-list.component';
 import { PathDetailsComponent } from './components/path-details/path-details.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
     PathListComponent,
     PathDetailsComponent,
     UploadFileComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

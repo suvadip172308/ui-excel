@@ -9,6 +9,8 @@ import { RetailerDetailsComponent } from '../components/retailer-details/retaile
 import { PathListComponent } from '../components/path-list/path-list.component';
 import { PathDetailsComponent } from '../components/path-details/path-details.component';
 import { UploadFileComponent } from '../components/upload-file/upload-file.component';
+import { UserListComponent } from '../components/user-list/user-list.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 export const ROUTES: Routes = [
   {
@@ -22,9 +24,9 @@ export const ROUTES: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent 
+    component: RegisterComponent
   },
-  { 
+  {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
@@ -40,6 +42,11 @@ export const ROUTES: Routes = [
       {
         path: 'transaction/:id',
         component: TransactionDetailsComponent
+      },
+      {
+        path: 'users',
+        component: UserListComponent,
+        canActivate: [AdminGuard]
       },
       {
         path: 'retailer',
