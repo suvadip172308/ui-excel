@@ -53,9 +53,19 @@ export class ApiService {
     return this.http.put(fullUrl, payload, { observe: 'response' });
   }
 
-  deleteCall(url) {
+  deleteCall(url, payload?: any) {
     const fullUrl = this.getUrl(url);
+    if (payload) {
+      const options = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+        body: payload
+      }
 
-    return this.http.delete(fullUrl, { observe: 'response' });
+      return this.http.delete(fullUrl, options);
+    } else {
+      return this.http.delete(fullUrl, { observe: 'response' });
+    }
   }
 }

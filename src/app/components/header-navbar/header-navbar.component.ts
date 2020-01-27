@@ -77,6 +77,13 @@ export class HeaderNavbarComponent {
           );
           break;
 
+        case 'delete-transaction':
+          this._router.navigate(
+            ['dashboard', 'transaction'],
+            { queryParams: { mode: 'delete' } }
+          );
+          break;
+
         case 'retailer':
           this._router.navigate(['dashboard', 'retailer']);
           break;
@@ -105,8 +112,8 @@ export class HeaderNavbarComponent {
           );
           break;
 
-        case 'users':
-          this._router.navigate(['dashboard', 'users']);
+        case 'operators':
+          this._router.navigate(['dashboard', 'operators']);
           break;
 
         default:

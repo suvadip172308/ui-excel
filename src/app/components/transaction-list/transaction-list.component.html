@@ -1,49 +1,58 @@
 <div class="transaction-container">
   <div>
-    <ngx-datatable class="material flat" [rows]="rows" [columnMode]="'flex'" [headerHeight]="50"
-      [loadingIndicator]="isLoading" [footerHeight]="'auto'" [rowHeight]="'auto'" [externalPaging]="true"
-      [count]="totalElements" [limit]="pageSize" [offset]="pageNumber" (page)="setPage($event)"
-      (activate)="onSelectRow($event)">
-      <ngx-datatable-column name="Sl#" [flexGrow]="0.5">
+    <ngx-datatable class="material flat" [rows]="rows" [columns]="columns" [columnMode]="ColumnMode.flex"
+      [headerHeight]="50" [loadingIndicator]="isLoading" [footerHeight]="'auto'" [rowHeight]="'auto'"
+      [externalPaging]="true" [count]="totalElements" [limit]="pageSize" [offset]="pageNumber" (page)="setPage($event)"
+      [selectionType]="SelectionType.checkbox" [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
+      (select)="onSelect($event)" (activate)="onSelectRow($event)">
+      <ngx-datatable-column *ngIf="isDeleteMode" [width]="30" [sortable]="false" [canAutoResize]="false"
+        [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="#" [flexGrow]=".5">
         <ng-template let-row="row" let-expanded='expanded' let-rowIndex='rowIndex' ngx-datatable-cell-template>
           <span>{{row.serialNo}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Retailer" [flexGrow]="2.5">
+      <ngx-datatable-column name="Retailer" [flexGrow]="2">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
           <span>{{row.retailerName}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Company" [flexGrow]="1">
+      <ngx-datatable-column name="Company" [flexGrow]="1.5">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
           <span>{{row.companyName}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Route" [flexGrow]="2">
+      <ngx-datatable-column name="Route" [flexGrow]="2.5">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
           <span>{{row.routeName}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Agent" [flexGrow]="2">
+      <ngx-datatable-column name="Agent" [flexGrow]="1.5">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
           <span>{{row.agentName}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Invoice Amount" [flexGrow]="1.5">
+      <ngx-datatable-column name="Invoice Amount" [flexGrow]="1">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-          <span>{{row.invoiceAmount}}</span>
+          <span>₹ {{row.invoiceAmount}}</span>
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Payment" [flexGrow]="1">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-          <span>{{row.payment}}</span>
+          <span>₹ {{row.payment}}</span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Date" [flexGrow]="1.5">
+      <ngx-datatable-column name="Date" [flexGrow]="1">
         <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
           <span>{{row.date}}</span>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
+  </div>
+  <div class="delete-button" *ngIf="isDeleteMode && selected.length > 0" (click)="delete()" role="button">
+    <i class="material-icons">
+      delete
+    </i>
   </div>
 </div>

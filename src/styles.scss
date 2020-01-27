@@ -1,18 +1,145 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+
+$excel-app-primary: mat-palette($mat-indigo);
+$excel-app-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$excel-app-warn: mat-palette($mat-red);
+$excel-app-theme: mat-light-theme($excel-app-primary, $excel-app-accent, $excel-app-warn);
+
+@include angular-material-theme($excel-app-theme);
+
 @import '~@angular/cdk/overlay-prebuilt.css';
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 
-html, body { height: 100%; };
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; };
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .dark-backdrop {
-  background:rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .mat-card {
   border-radius: 0px !important;
 }
 
+.ngx-datatable {
+  width: 90%;
+  margin: 15px auto;
 
+  &.flat {
+    margin: 0;
+    width: 100%;
+    box-shadow: none;
+  }
+}
+
+.datatable-body-cell-label {
+  span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+}
+
+.confirm-dialog-container {
+
+  .content-container {
+    padding: 24px;
+
+    h2 {
+      margin: 15px 0 10px;
+      color: #444;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0 0 40px;
+      color: #888;
+      font-weight: 400;
+    }
+  }
+
+  .button-container {
+    display: flex;
+
+    button {
+      width: 100%;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      cursor: pointer;
+      padding: 4px;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 15px;
+      transition: background-color .2s ease-in-out;
+
+      &:nth-of-type(1) {
+        border-bottom-right-radius: 0;
+        background-color: #eee;
+
+        &:hover {
+          background-color: rgb(253, 251, 251);
+        }
+      }
+
+      &:nth-of-type(2) {
+        border-bottom-left-radius: 0;
+        background-color: salmon;
+        color: #fff;
+
+        &:hover {
+          background-color: rgb(226, 112, 100);
+        }
+      }
+    }
+  }
+}
+
+.logout {
+  height: 64px;
+  border-radius: 0;
+}
+
+.delete-button {
+  background: #546bf6;
+  width: 64px;
+  height: 45px;
+  border-radius: 0;
+  text-align: center;
+  cursor: pointer;
+  padding-top: 19px;
+  position: absolute;
+  margin: 0;
+  top: 0;
+  right: 80px;
+  transition: background .2s;
+
+  i {
+    color: #fff;
+    font-size: 26px;
+  }
+
+  &:hover {
+    background: #5067ec;
+  }
+
+  @media screen and (max-width:600px) {
+    height: 40px;
+    padding-top: 16px;
+  }
+}

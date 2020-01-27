@@ -73,8 +73,8 @@ export const LINKS = [
     ]
   },
   {
-    name: 'users',
-    viewName: 'Manage Users',
+    name: 'operators',
+    viewName: 'Manage Operators',
     adminMenu: true,
     innerMenus: []
   },
