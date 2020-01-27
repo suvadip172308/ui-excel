@@ -13,7 +13,8 @@ export function userReducer(state: UserState = initialUserState, action: LoginAc
       return {
         ...state,
         userName: action.payload.userName,
-        name: action.payload.name
+        name: action.payload.name,
+        isAdmin: action.payload.isAdmin
       };
     
     case LoginActions.REMOVE_USER:
