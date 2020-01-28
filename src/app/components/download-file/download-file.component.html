@@ -25,10 +25,14 @@
               <span class="page-container">
                 <mat-form-field class="download-pages">
                   <input matInput placeholder="From Page"
+                    type="number"
+                    [value]="fromPage"
                     (input)="onInput($event.target.value, 'from')">
                 </mat-form-field>
                 <mat-form-field class="download-pages">
                   <input matInput placeholder="To Page"
+                    type="number"
+                    [value]="toPage"
                     (input)="onInput($event.target.value, 'to')">
                 </mat-form-field>
               </span>

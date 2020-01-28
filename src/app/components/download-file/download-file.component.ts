@@ -6,6 +6,7 @@ import { saveAs } from 'file-saver';
 import { UPLOAD_TYPES, PAGE_SIZE } from '../../shared/const/conts';
 import { ApiService } from '../../services/api/api.service';
 import { SpinnerService } from '../../services/spinner/spinner.service';
+import { CommonService } from '../../services/common/common.service';
 
 @Component({
   selector: 'app-download-file',
@@ -21,7 +22,8 @@ export class DownloadFileComponent implements OnInit {
   constructor(
     private _http: HttpClient,
     private apiService: ApiService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private commonService: CommonService
   ) { }
 
   ngOnInit() {}
@@ -39,7 +41,23 @@ export class DownloadFileComponent implements OnInit {
     }
   }
 
+  isInputValid() {
+    if (!this.selectedType) {
+      this.commonService.openSnackBar('Please select download type');
+      return false;
+    } else if (this.toPage < this.fromPage) {
+      this.commonService.openSnackBar('Select bigger value in To Page field');
+      return false;
+    }
+
+    return true;
+  }
+
   onDownload() {
+    if (!this.isInputValid()) {
+      return;
+    }
+
     const body = {
       collection: this.selectedType,
       pageSize: PAGE_SIZE,
