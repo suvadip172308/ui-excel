@@ -47,18 +47,8 @@ export class DownloadFileComponent implements OnInit {
       toPage: this.toPage
     };
 
-    this._http.post(
-      this.apiService.getUrl('/file/download'),
-      body,
-      {
-        responseType: 'blob',
-        headers: new HttpHeaders().set('Content-Type', 'application/json')
-      }
-    ).pipe(
-      take(1),
-      finalize(() => this.spinnerService.end())
-    ).subscribe(
-      res => saveAs(res)
-    );
+    this.apiService.download('/file/download', body).subscribe(res => {
+      saveAs(res, `${this.selectedType}.xlsx`);
+    });
   }
 }

@@ -68,4 +68,10 @@ export class ApiService {
       return this.http.delete(fullUrl, { observe: 'response' });
     }
   }
+
+  download(url, payload) {
+    const fullUrl = this.getUrl(url);
+
+    return this.http.post(fullUrl, payload, { responseType: 'blob' });
+  }
 }
