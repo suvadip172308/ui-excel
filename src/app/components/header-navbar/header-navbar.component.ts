@@ -95,6 +95,13 @@ export class HeaderNavbarComponent {
           );
           break;
 
+        case 'delete-retailer':
+          this._router.navigate(
+            ['dashboard', 'retailer'],
+            { queryParams: { mode: 'delete' } }
+          );
+          break;
+
         case 'path':
           this._router.navigate(['dashboard', 'path']);
           break;
@@ -103,6 +110,12 @@ export class HeaderNavbarComponent {
           this._router.navigate(
             ['dashboard', 'path', 'new'],
             { queryParams: { mode: 'create' } }
+          );
+          break;
+        case 'delete-path':
+          this._router.navigate(
+            ['dashboard', 'path'],
+            { queryParams: { mode: 'delete' } }
           );
           break;
 

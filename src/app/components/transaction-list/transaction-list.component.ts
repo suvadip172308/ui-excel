@@ -37,7 +37,7 @@ export class TransactionListComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe((q) => {
       this.isDeleteMode = q['mode'] === 'delete' && this.auth.isAdmin() ? true : false;
-    })
+    });
   }
 
   ngOnInit() {
@@ -93,7 +93,6 @@ export class TransactionListComponent implements OnInit {
   onSelect({ selected }) {
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
-    console.log('Select Event', this.selected);
   }
 
   delete() {
@@ -110,7 +109,8 @@ export class TransactionListComponent implements OnInit {
     if (!this.auth.isAdmin()) return;
     try {
       await this.apiService.deleteCall(`/transaction`, { transactionIds: ids }).toPromise();
-      this.commonService.openSnackBar(`${ids.length} record(s) deleted.`)
+      this.commonService.openSnackBar(ids.length > 1 ? `${ids.length} records deleted.` : `1 record deleted.`);
+      this.selected = [];
       this.setPage({ offset: 0, pageSize: this.pageSize });
     } catch (error) {
       window.alert('Something went wrong! Try again later.')

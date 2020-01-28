@@ -1,37 +1,48 @@
 <div class="retailer-container">
-  <ngx-datatable class="material flat" [rows]="rows" [columnMode]="'flex'" [headerHeight]="50"
-    [loadingIndicator]="isLoading" [footerHeight]="'auto'" [rowHeight]="'auto'" [externalPaging]="true"
-    [count]="totalElements" [limit]="pageSize" [offset]="pageNumber" (page)="onSetPage($event)"
-    (activate)="onSelectRow($event)">
-    <ngx-datatable-column name="Sl#" [flexGrow]="0.5">
-      <ng-template let-row="row" let-expanded='expanded' let-rowIndex='rowIndex' ngx-datatable-cell-template>
-        <span>{{row.serialNo}}</span>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="ID#" [flexGrow]="1.5">
-      <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-        <span>{{row.retailerId}}</span>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Name" [flexGrow]="3.5">
-      <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-        <span>{{row.retailerName}}</span>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Company" [flexGrow]="2.5">
-      <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-        <span>{{row.companyName}}</span>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Balance" [flexGrow]="2.5">
-      <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-        <span>{{row.balance}}</span>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Status" [flexGrow]="1.5">
-      <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
-        <span>{{row.isActivated ? 'Active' : 'Inactive'}}</span>
-      </ng-template>
-    </ngx-datatable-column>
-  </ngx-datatable>
+  <div>
+    <ngx-datatable class="material flat" [rows]="rows" [columnMode]="ColumnMode.flex" [headerHeight]="50"
+      [loadingIndicator]="isLoading" [footerHeight]="'auto'" [rowHeight]="'auto'" [externalPaging]="true"
+      [count]="totalElements" [limit]="pageSize" [offset]="pageNumber" (page)="setPage($event)"
+      [selectionType]="SelectionType.checkbox" [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
+      (select)="onSelect($event)" (activate)="onSelectRow($event)">
+      <ngx-datatable-column *ngIf="isDeleteMode" [width]="30" [sortable]="false" [canAutoResize]="false"
+        [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="#" [flexGrow]="0.5">
+        <ng-template let-row="row" let-expanded='expanded' let-rowIndex='rowIndex' ngx-datatable-cell-template>
+          <span>{{row.serialNo}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="ID#" [flexGrow]="1.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.retailerId}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name" [flexGrow]="3.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.retailerName}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Company" [flexGrow]="2.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.companyName}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Balance" [flexGrow]="2.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>₹ {{row.balance}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Status" [flexGrow]="1.5">
+        <ng-template let-row="row" let-expanded='expanded' ngx-datatable-cell-template>
+          <span>{{row.isActivated ? 'Active' : 'Inactive'}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <div class="delete-button" *ngIf="isDeleteMode && selected.length > 0" (click)="delete()" role="button">
+    <i class="material-icons">
+      delete
+    </i>
+  </div>
 </div>

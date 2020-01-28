@@ -43,8 +43,14 @@ export class AuthService {
     try {
       const tokenInfo = jwt_decode(token);
       return tokenInfo.isAdmin;
-    } catch(err) {
+    } catch (err) {
       return null;
     }
+  }
+
+  isValidToken() {
+    const token = this.getToken();
+    const now = new Date().getTime() / 1000;
+    return now > jwt_decode(token).iat ? true : false;
   }
 }
