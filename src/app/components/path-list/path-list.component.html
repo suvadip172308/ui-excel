@@ -3,8 +3,7 @@
     <ngx-datatable class="material flat" [rows]="rows" [columnMode]="ColumnMode.flex" [headerHeight]="50"
       [loadingIndicator]="isLoading" [footerHeight]="'auto'" [rowHeight]="'auto'" [externalPaging]="true"
       [count]="totalElements" [limit]="pageSize" [offset]="pageNumber" (page)="setPage($event)"
-      [selectionType]="SelectionType.checkbox" [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
-      (select)="onSelect($event)" (activate)="onSelectRow($event)">
+      [selectionType]="SelectionType.checkbox" [selectAllRowsOnPage]="false" (select)="onSelect($event)" (activate)="onSelectRow($event)">
       <ngx-datatable-column *ngIf="isDeleteMode" [width]="30" [sortable]="false" [canAutoResize]="false"
         [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
       </ngx-datatable-column>
