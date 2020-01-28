@@ -31,7 +31,8 @@ import { RetailerDetailsComponent } from './components/retailer-details/retailer
 import { PathListComponent } from './components/path-list/path-list.component';
 import { PathDetailsComponent } from './components/path-details/path-details.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
-import { UserListComponent } from './components/user-list/user-list.component';
+import { OperatorListComponent } from './components/operator-list/operator-list.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
     PathListComponent,
     PathDetailsComponent,
     UploadFileComponent,
-    UserListComponent,
+    OperatorListComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
     MatIconModule,
     NgxDatatableModule,
     StoreModule.forRoot(reducers, {
-      metaReducers, 
+      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
@@ -79,7 +81,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
     }
   ],
   entryComponents: [
-    SpinnerComponent
+    SpinnerComponent,
+    ConfirmDialogComponent
   ],
   bootstrap: [AppComponent]
 })

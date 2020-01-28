@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 
 import { CommonService } from '../../services/common/common.service';
-import { ApiService } from 'src/app/services/api/api.service';
+import { ApiService } from '../../services/api/api.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { PAGE_SIZE } from '../../shared/const/conts';
 import { Transaction } from '../../models/common.model';
 
@@ -12,6 +14,7 @@ import { Transaction } from '../../models/common.model';
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
+
   isLoading: boolean = false;
   pageSize = PAGE_SIZE;
   totalElements = 0;
@@ -20,14 +23,25 @@ export class TransactionListComponent implements OnInit {
   columns = [];
   selected = [];
 
+  ColumnMode = ColumnMode;
+  SelectionType = SelectionType;
+
+  isDeleteMode: boolean;
+
   constructor(
     private commonService: CommonService,
     private apiService: ApiService,
-    private _router: Router
-  ) {}
+    private auth: AuthService,
+    private _router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((q) => {
+      this.isDeleteMode = q['mode'] === 'delete' && this.auth.isAdmin() ? true : false;
+    });
+  }
 
   ngOnInit() {
-    this.setPage({offset: 0, pageSize: this.pageSize });
+    this.setPage({ offset: 0, pageSize: this.pageSize });
   }
 
   setPage(pageInfo) {
@@ -64,14 +78,43 @@ export class TransactionListComponent implements OnInit {
   }
 
   onSelectRow(event) {
-    if(event.type !== 'click') {
+    if (this.isDeleteMode) return;
+    if (event.type !== 'click') {
       return;
     }
 
     const id = event.row.id;
     this._router.navigate(
       ['dashboard', 'transaction', id],
-      { queryParams: { mode: 'display'}}
+      { queryParams: { mode: 'display' } }
     );
   }
+
+  onSelect({ selected }) {
+    this.selected.splice(0, this.selected.length);
+    this.selected.push(...selected);
+  }
+
+  delete() {
+    this.commonService.openConfirmDialog('This can\'t be undone. Are you sure to delete?')
+      .afterClosed().subscribe((response) => {
+        if (response) {
+          const ids = this.selected.map((i) => i.id);
+          this.deleteTransactions(ids);
+        }
+      })
+  }
+
+  async deleteTransactions(ids: string[]) {
+    if (!this.auth.isAdmin()) return;
+    try {
+      await this.apiService.deleteCall(`/transaction`, { transactionIds: ids }).toPromise();
+      this.commonService.openSnackBar(ids.length > 1 ? `${ids.length} records deleted.` : `1 record deleted.`);
+      this.selected = [];
+      this.setPage({ offset: 0, pageSize: this.pageSize });
+    } catch (error) {
+      window.alert('Something went wrong! Try again later.')
+    }
+  }
+
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { CommonService } from '../../services/common/common.service';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -7,11 +6,11 @@ import { PAGE_SIZE } from '../../shared/const/conts';
 import { User } from '../../models/common.model';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  selector: 'app-operator-list',
+  templateUrl: './operator-list.component.html',
+  styleUrls: ['./operator-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class OperatorListComponent implements OnInit {
 
   isLoading: boolean = false;
   pageSize = PAGE_SIZE;
@@ -24,7 +23,6 @@ export class UserListComponent implements OnInit {
   constructor(
     private commonService: CommonService,
     private apiService: ApiService,
-    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -66,9 +64,12 @@ export class UserListComponent implements OnInit {
         this.activateUserStatus(id, false);
         break;
       case '3':
-        if (confirm("This action can't be undone. Are you sure to delete?")) {
-          this.deleteUser(id);
-        }
+        this.commonService.openConfirmDialog('This can\'t be undone. Are you sure to delete?')
+          .afterClosed().subscribe((response) => {
+            if (response) {
+              this.deleteUser(id);
+            }
+          })
         break;
       default:
         break;

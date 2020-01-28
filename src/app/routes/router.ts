@@ -9,8 +9,9 @@ import { RetailerDetailsComponent } from '../components/retailer-details/retaile
 import { PathListComponent } from '../components/path-list/path-list.component';
 import { PathDetailsComponent } from '../components/path-details/path-details.component';
 import { UploadFileComponent } from '../components/upload-file/upload-file.component';
-import { UserListComponent } from '../components/user-list/user-list.component';
+import { OperatorListComponent } from '../components/operator-list/operator-list.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { LoginGuard } from '../guards/login.guard';
 
 export const ROUTES: Routes = [
   {
@@ -28,6 +29,7 @@ export const ROUTES: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [LoginGuard],
     component: DashboardComponent,
     children: [
       {
@@ -44,8 +46,8 @@ export const ROUTES: Routes = [
         component: TransactionDetailsComponent
       },
       {
-        path: 'users',
-        component: UserListComponent,
+        path: 'operators',
+        component: OperatorListComponent,
         canActivate: [AdminGuard]
       },
       {
