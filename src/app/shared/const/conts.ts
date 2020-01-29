@@ -16,9 +16,20 @@ export const LINKS = [
     innerMenus: []
   },
   {
-    name: 'download',
-    viewName: 'Download File',
-    innerMenus: []
+    name: '#files',
+    viewName: 'Files',
+    innerMenus: [
+      {
+        name: 'upload',
+        viewName: 'Upload File',
+        adminMenu: false
+      },
+      {
+        name: 'download',
+        viewName: 'Download File',
+        adminMenu: false
+      }
+    ]
   },
   {
     name: '#transaction',
@@ -81,11 +92,6 @@ export const LINKS = [
     name: 'operators',
     viewName: 'Manage Operators',
     adminMenu: true,
-    innerMenus: []
-  },
-  {
-    name: 'upload',
-    viewName: 'Upload File',
     innerMenus: []
   }
 ];
