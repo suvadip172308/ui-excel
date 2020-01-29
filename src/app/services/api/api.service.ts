@@ -11,7 +11,7 @@ import { QueryParams } from '../../models/common.model';
 export class ApiService {
   constructor(private http: HttpClient) { };
 
-  private getUrl(url: string, queryParams?: QueryParams[]) {
+  public getUrl(url: string, queryParams?: QueryParams[]) {
     let query = '';
 
     if (queryParams) {
@@ -67,5 +67,11 @@ export class ApiService {
     } else {
       return this.http.delete(fullUrl, { observe: 'response' });
     }
+  }
+
+  download(url, payload) {
+    const fullUrl = this.getUrl(url);
+
+    return this.http.post(fullUrl, payload, { responseType: 'blob' });
   }
 }

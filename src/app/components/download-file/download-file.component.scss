@@ -1,0 +1,60 @@
+@import '~@angular/material/theming';
+
+.mat-card {
+  @include mat-elevation(20, #000, 0.8);
+}
+
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  .download-card {
+    width: 22em;
+    height: 26em;
+    background-color: #f5f3f34d;
+  }
+
+  .download {
+    margin-left: 20px;
+    margin-top: 2em;
+
+    .input-wrapper {
+      width: 20em;
+    }
+
+    .download-wrapper {
+      .btn-select {
+        border: 2px solid dodgerblue;
+      }
+      .file-name {
+        display: inline-block;
+        padding-left: 10px;
+        min-width: 154px;
+      }
+
+      .btn-icon-wrapper {
+        background: transparent;
+        border: 0;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        mat-icon {
+          position: relative;
+          top: 6px;
+        }
+      }
+    }
+  }
+
+  .action-container {
+    text-align: center;
+
+    .download-button {
+      width: 17em;
+    }
+  }
+}

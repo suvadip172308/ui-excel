@@ -12,6 +12,7 @@ import { UploadFileComponent } from '../components/upload-file/upload-file.compo
 import { OperatorListComponent } from '../components/operator-list/operator-list.component';
 import { AdminGuard } from '../guards/admin.guard';
 import { LoginGuard } from '../guards/login.guard';
+import { DownloadFileComponent } from '../components/download-file/download-file.component';
 
 export const ROUTES: Routes = [
   {
@@ -70,6 +71,10 @@ export const ROUTES: Routes = [
         path: 'upload',
         component: UploadFileComponent
       },
+      {
+        path: 'download',
+        component: DownloadFileComponent
+      }
     ]
   }
 ];
