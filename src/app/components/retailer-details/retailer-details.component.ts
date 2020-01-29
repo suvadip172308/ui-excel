@@ -6,6 +6,7 @@ import { take, finalize, filter } from 'rxjs/operators';
 import { ApiService } from '../../services/api/api.service';
 import { SpinnerService } from '../../services/spinner/spinner.service';
 import { CommonService } from '../../services/common/common.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Mode } from '../../models/common.model';
 
 @Component({
@@ -21,6 +22,7 @@ export class RetailerDetailsComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    public auth: AuthService,
     private spinnerService: SpinnerService,
     private route: ActivatedRoute,
     private _router: Router,
@@ -33,7 +35,7 @@ export class RetailerDetailsComponent implements OnInit {
       .subscribe(params => {
         const mode = params.mode.trim();
         this.mode = mode;
-    });
+      });
 
     if (!this.isCreateMode) {
       this.route.params.subscribe(param => {
@@ -62,12 +64,26 @@ export class RetailerDetailsComponent implements OnInit {
 
     this.spinnerService.start();
     this.apiService.getCall(`/retailer/${id}`)
-    .pipe(
-      take(1),
-      finalize(() => this.spinnerService.end())
-    ).subscribe(data => {
-      this.retailer = data;
-    });
+      .pipe(
+        take(1),
+        finalize(() => this.spinnerService.end())
+      ).subscribe(data => {
+        this.retailer = data;
+      });
+  }
+
+  onActivate() {
+    if (!this.auth.isAdmin()) return;
+    const payload = {
+      "retailerIds": [this.retailerId]
+    };
+    this.apiService.putCall(`/retailer/activate`, payload)
+      .subscribe((v) => {
+        if (v.status === 200) {
+          this.commonService.openSnackBar('Retailer activated.');
+          this.getRetailer(this.retailerId);
+        }
+      });
   }
 
   onBack() {
@@ -88,7 +104,7 @@ export class RetailerDetailsComponent implements OnInit {
       return;
     }
 
-    switch(prop) {
+    switch (prop) {
       case 'retailerId':
         this.updationObject['retailerId'] = value;
         break;
@@ -106,7 +122,7 @@ export class RetailerDetailsComponent implements OnInit {
 
   onDone() {
     const isEmpty = this.commonService.isObjectEmpty(this.updationObject);
-    
+
     if (isEmpty) {
       this.commonService.openSnackBar('No option edited');
       return;
@@ -127,7 +143,7 @@ export class RetailerDetailsComponent implements OnInit {
 
   onCreate() {
     const isEmpty = this.commonService.isObjectEmpty(this.updationObject);
-    
+
     if (isEmpty) {
       this.commonService.openSnackBar('All fiels are empty');
       return;
@@ -143,5 +159,21 @@ export class RetailerDetailsComponent implements OnInit {
       this.mode = Mode.display;
       this._router.navigate(['dashboard', 'retailer']);
     });
+  }
+
+  onDelete() {
+    this.commonService.openConfirmDialog('This can\'t be undone. Are you sure to delete?')
+      .afterClosed().subscribe((response) => {
+        if (response) {
+          const payload = {
+            "retailerIds": [this.retailerId]
+          }
+          this.apiService.deleteCall('/retailer', payload)
+            .subscribe(() => {
+              this.commonService.openSnackBar('Retailer deleted.');
+              this._router.navigate(['dashboard', 'retailer']);
+            });
+        }
+      })
   }
 }

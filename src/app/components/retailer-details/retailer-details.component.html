@@ -1,104 +1,89 @@
-<div class="retailer-details">
-    <mat-card class="card-elevation transaction-card">
-      <mat-card-header>
-        <div class="info-header">
-          <h2>Retailer Details</h2>
+<div class="retailer-details details-view">
+  <mat-card class="card-elevation transaction-card">
+    <mat-card-header>
+      <div class="info-header">
+        <h2>Retailer Details</h2>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="info-container" [class.form-view]="isEditMode || isCreateMode">
+        <div class="info-table-wrapper">
+          <div class="row">
+            <div class="left-col">
+              <span>Retailer#</span>
+              <span class="asterisk">*</span>
+            </div>
+            <div class="right-col">
+              <span *ngIf="isDisplayMode">{{retailer?.retailerId}}</span>
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="retailerId" [value]="isEditMode ? retailer?.retailerId : ''"
+                  (input)="onInput($event.target.value, 'retailerId')">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="left-col">
+              <span>Retailer Name</span>
+              <span class="asterisk">*</span>
+            </div>
+            <div class="right-col">
+              <span *ngIf="isDisplayMode">{{retailer?.retailerName}}</span>
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="retailerName" [value]="isEditMode ? retailer?.retailerName : ''"
+                  (input)="onInput($event.target.value, 'retailerName')">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="left-col">
+              <span>Company</span>
+              <span class="asterisk">*</span>
+            </div>
+            <div class="right-col">
+              <span *ngIf="isDisplayMode">{{retailer?.companyName}}</span>
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="companyName" [value]="isEditMode ? retailer?.companyName : ''"
+                  (input)="onInput($event.target.value, 'companyName')">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="left-col">
+              <span>Balance</span>
+              <span class="asterisk">*</span>
+            </div>
+            <div class="right-col">
+              <span *ngIf="isDisplayMode">{{retailer?.balance}}</span>
+              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+                <input matInput name="balance" [value]="isEditMode ? retailer?.balance : ''"
+                  (input)="onInput($event.target.value, 'balance')">
+              </mat-form-field>
+            </div>
+          </div>
+          <div *ngIf="!isCreateMode" class="row">
+            <div class="left-col">
+              <span>Status</span>
+            </div>
+            <div class="right-col">
+              <span>{{retailer?.isActivated ? 'Active' : 'Inactive'}}</span> &nbsp;
+              <button mat-raised-button color="primary" class="edit-info-button"
+                *ngIf="isEditMode && auth.isAdmin() && !retailer.isActivated" (click)="onActivate()">Activate</button>
+            </div>
+          </div>
         </div>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="info-container">
-          <table class="info-table-wrapper">
-            <tr class="row">
-              <td class="left-col">
-                <span>Retailer#</span>
-                <span class="asterisk">*</span>
-              </td>
-              <td class="right-col">
-                <span *ngIf="isDisplayMode">{{retailer?.retailerId}}</span>
-                <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                  class="input-wrapper">
-                  <input matInput 
-                    name="retailerId"
-                    [value]="isEditMode ? retailer?.retailerId : ''"
-                    (input)="onInput($event.target.value, 'retailerId')">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr class="row">
-              <td class="left-col">
-                <span>Retailer Name</span>
-                <span class="asterisk">*</span>
-              </td>
-              <td class="right-col">
-                <span *ngIf="isDisplayMode">{{retailer?.retailerName}}</span>
-                <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                  class="input-wrapper">
-                  <input matInput 
-                    name="retailerName"
-                    [value]="isEditMode ? retailer?.retailerName : ''"
-                    (input)="onInput($event.target.value, 'retailerName')">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr class="row">
-              <td class="left-col">
-                <span>Company</span>
-                <span class="asterisk">*</span>
-              </td>
-              <td class="right-col">
-                <span *ngIf="isDisplayMode">{{retailer?.companyName}}</span>
-                <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                  class="input-wrapper">
-                  <input matInput 
-                    name="companyName"
-                    [value]="isEditMode ? retailer?.companyName : ''"
-                    (input)="onInput($event.target.value, 'companyName')">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr class="row">
-              <td class="left-col">
-                <span>Balance</span>
-                <span class="asterisk">*</span>
-              </td>
-              <td class="right-col">
-                <span *ngIf="isDisplayMode">{{retailer?.balance}}</span>
-                <mat-form-field *ngIf="isEditMode || isCreateMode" 
-                  class="input-wrapper">
-                  <input matInput 
-                    name="balance"
-                    [value]="isEditMode ? retailer?.balance : ''"
-                    (input)="onInput($event.target.value, 'balance')">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr *ngIf= "!isCreateMode"
-                class="row">
-              <td class="left-col">
-                <span>Status</span>
-                <span class="asterisk">*</span>
-              </td>
-              <td class="right-col">
-                <span>{{retailer?.isActivated ? 'Active' : 'Inactive'}}</span>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <div class="info-footer">
-          <button mat-raised-button
-            color="accent"
-            class="back-info-button"
-            (click)="onBack()">Back</button>
-          <button mat-raised-button
-            color="accent"
-            class="edit-info-button"
-            (click)="isEditMode ? onDone() : isCreateMode ? onCreate() : onEdit(retailer)">
-            {{isEditMode ? 'Done' : isCreateMode ? 'Create' : 'Edit'}}
-          </button>
-        </div>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="info-footer">
+        <button mat-raised-button class="back-info-button" (click)="onBack()">Back</button>
+        <button mat-raised-button color="accent" class="edit-info-button"
+          (click)="isEditMode ? onDone() : isCreateMode ? onCreate() : onEdit(retailer)">
+          {{isEditMode ? 'Done' : isCreateMode ? 'Create' : 'Edit'}}
+        </button>
+      </div>
+      <div class="delete-zone" *ngIf="auth.isAdmin()">
+        <a (click)="onDelete()">Delete</a>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

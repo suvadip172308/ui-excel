@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { SpinnerService } from '../../services/spinner/spinner.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { CommonService } from '../../services/common/common.service';
 import { Mode } from '../../models/common.model';
 
 
@@ -23,7 +24,8 @@ export class TransactionDetailsComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private spinnerService: SpinnerService,
-    public authService: AuthService,
+    private commonService: CommonService,
+    public auth: AuthService,
     private route: ActivatedRoute,
     private _router: Router
   ) { }
@@ -68,6 +70,20 @@ export class TransactionDetailsComponent implements OnInit {
         finalize(() => this.spinnerService.end())
       ).subscribe(data => {
         this.transaction = data;
+      });
+  }
+
+  onApprove() {
+    if (!this.auth.isAdmin()) return;
+    const payload = {
+      "transactionIds": [this.transactionId]
+    };
+    this.apiService.putCall(`/transaction/approve`, payload)
+      .subscribe((v) => {
+        if (v.status === 200) {
+          this.commonService.openSnackBar('Transaction approved.');
+          this.getTransaction(this.transactionId)
+        }
       });
   }
 
@@ -150,7 +166,19 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
   onDelete() {
-    /** Todo: Implement delete functionality */
-    console.log('Not implemented yet.');
+    this.commonService.openConfirmDialog('This can\'t be undone. Are you sure to delete?')
+      .afterClosed().subscribe((response) => {
+        if (response) {
+
+          const payload = {
+            "transactionIds": [this.transactionId]
+          }
+          this.apiService.deleteCall('/transaction', payload)
+            .subscribe(() => {
+              this.commonService.openSnackBar('Transaction deleted.');
+              this._router.navigate(['dashboard', 'transaction']);
+            });
+        }
+      })
   }
 }

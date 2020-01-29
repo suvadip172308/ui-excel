@@ -32,6 +32,10 @@ body {
   border-radius: 0px !important;
 }
 
+.dashboard-container {
+  height: 100vh;
+}
+
 .ngx-datatable {
   width: 90%;
   margin: 15px auto;
@@ -142,5 +146,86 @@ body {
   @media screen and (max-width:600px) {
     height: 40px;
     padding-top: 16px;
+  }
+}
+
+.details-view {
+  width: 60%;
+  margin: 2em auto;
+
+  mat-card-header {
+    border-bottom: 1px solid black;
+  }
+
+  .info-header {
+    width: 100%;
+    text-align: center;
+  }
+
+  .info-container {
+    width: 100%;
+
+    .info-table-wrapper {
+      width: 65%;
+      margin: auto;
+
+      .row {
+        margin-top: 5px;
+        font-size: 1.2em;
+        font-weight: lighter;
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        align-items: center;
+
+        .asterisk {
+          display: none;
+          color: red;
+          margin-left: 4px;
+        }
+
+        >div {
+          white-space: nowrap;
+          padding: 20px 10px;
+        }
+      }
+    }
+
+    &.form-view {
+      .info-table-wrapper .row .asterisk {
+        display: inline;
+      }
+    }
+  }
+
+  .info-footer {
+    margin-bottom: 40px;
+    text-align: center;
+
+    .back-info-button {
+      width: 8em;
+    }
+
+    .edit-info-button {
+      width: 8em;
+    }
+
+    &+.delete-zone {
+      margin: 0px -8px -16px;
+      background: #ffe9e9;
+      padding: 1.5em;
+      text-align: center;
+      color: salmon;
+      text-transform: uppercase;
+      font-weight: 400;
+
+      a {
+        cursor: pointer;
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media screen and (max-width:800px) {
+    width: 96%;
   }
 }
