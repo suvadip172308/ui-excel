@@ -10,13 +10,16 @@
         <div class="info-table-wrapper">
           <div class="row">
             <div class="left-col">
-              <span>Path#</span><span class="asterisk">*</span>
+              <span>Path#</span><span class="asterisk" *ngIf="isCreateMode">*</span>
             </div>
             <div class="right-col">
-              <span *ngIf="isDisplayMode">{{path?.pathId}}</span>
-              <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
+              <span *ngIf="isDisplayMode || isEditMode">{{path?.pathId}}</span>
+              <!-- <mat-form-field *ngIf="isEditMode || isCreateMode" class="input-wrapper">
                 <input matInput name="pathId" [value]="isEditMode ? path?.pathId : ''"
                   (input)="onInput($event.target.value, 'pathId')">
+              </mat-form-field> -->
+              <mat-form-field *ngIf="isCreateMode" class="input-wrapper">
+                <input matInput name="pathId" value="" (input)="onInput($event.target.value, 'pathId')">
               </mat-form-field>
             </div>
           </div>
