@@ -5,37 +5,51 @@
 }
 
 .main-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    .login-card {
-      width: 22em;
-      height: 26em;
-      top: 6em;
-      background-color: #f5f3f34d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  background: #8e9eab;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #eef2f3, #8e9eab);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #eef2f3, #8e9eab);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+  .login-card {
+    width: 22em;
+    height: 26em;
+    background-color: #fff;
+    border-radius: 4px !important;
+  }
+
+  .login {
+    margin-left: 20px;
+    margin-top: 2em;
+
+    .input-wrapper {
+      width: 20em;
     }
-  
-    .login {
-      margin-left: 20px;
+  }
+
+  .action-container {
+    padding: 1em 0;
+    text-align: center;
+
+    .login-button {
+      width: 17em;
+    }
+
+    .register-link {
       margin-top: 2em;
-  
-      .input-wrapper {
-        width: 20em;
-      }
-    }
-  
-    .action-container {
-      margin-top: 4em;
-      text-align: center;
+      font-size: .9em;
 
-      .login-button {
-        width: 17em;
-      }
-
-      .register-link {
-        margin-top: 0.5em;
-        font-size: 0.8em;
+      a {
+        color: cornflowerblue;
+        text-decoration: none;
       }
     }
   }
+}
