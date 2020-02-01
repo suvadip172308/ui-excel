@@ -25,22 +25,25 @@ export class RetailerListComponent implements OnInit {
   ColumnMode = ColumnMode;
   SelectionType = SelectionType;
 
-  isDeleteMode: boolean;
+  isDeleteMode = true;
 
   constructor(
     private commonService: CommonService,
     private apiService: ApiService,
-    private auth: AuthService,
+    public auth: AuthService,
     private _router: Router,
     private route: ActivatedRoute
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.route.queryParams.subscribe((q) => {
       this.isDeleteMode = q['mode'] === 'delete' && this.auth.isAdmin() ? true : false;
+      this.setPage({ offset: 0, pageSize: this.pageSize });
     });
   }
 
-  ngOnInit() {
-    this.setPage({ offset: 0, pageSize: this.pageSize });
+  displayCheck(row) {
+    return !row.hasAdminRight ? false : row.deletion ? true : !row.isActivated;
   }
 
   setPage(pageInfo) {
@@ -62,7 +65,7 @@ export class RetailerListComponent implements OnInit {
 
   onSelectRow(event) {
     if (this.isDeleteMode) return;
-    if (event.type !== 'click') {
+    if (event.type !== 'dblclick') {
       return;
     }
 
@@ -82,7 +85,9 @@ export class RetailerListComponent implements OnInit {
         retailerName: retailer.retailerName,
         companyName: retailer.companyName,
         balance: retailer.balance,
-        isActivated: retailer.isActivated
+        isActivated: retailer.isActivated,
+        hasAdminRight: this.auth.isAdmin(),
+        deletion: this.isDeleteMode
       };
     });
   }
@@ -90,6 +95,22 @@ export class RetailerListComponent implements OnInit {
   onSelect({ selected }) {
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
+  }
+
+  approve() {
+    const ids = this.selected.map(i => i.retailerId);
+    if (!this.auth.isAdmin()) return;
+    const payload = {
+      "retailerIds": ids
+    };
+    this.apiService.putCall(`/retailer/activate`, payload)
+      .subscribe((v) => {
+        if (v.status === 200) {
+          this.commonService.openSnackBar(`Retailer(s) activated.`);
+          this.setPage({ offset: 0, pageSize: this.pageSize });
+          this.selected = [];
+        }
+      });
   }
 
   delete() {

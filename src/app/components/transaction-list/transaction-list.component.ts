@@ -31,17 +31,20 @@ export class TransactionListComponent implements OnInit {
   constructor(
     private commonService: CommonService,
     private apiService: ApiService,
-    private auth: AuthService,
+    public auth: AuthService,
     private _router: Router,
     private route: ActivatedRoute
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.route.queryParams.subscribe((q) => {
       this.isDeleteMode = q['mode'] === 'delete' && this.auth.isAdmin() ? true : false;
+      this.setPage({ offset: 0, pageSize: this.pageSize });
     });
   }
 
-  ngOnInit() {
-    this.setPage({ offset: 0, pageSize: this.pageSize });
+  displayCheck(row) {
+    return !row.hasAdminRight ? false : row.deletion ? true : !row.isApproved;
   }
 
   setPage(pageInfo) {
@@ -72,14 +75,17 @@ export class TransactionListComponent implements OnInit {
         routeName: transaction.routeName,
         agentName: transaction.agentName,
         invoiceAmount: transaction.invoiceAmount,
-        payment: transaction.payment
+        payment: transaction.payment,
+        isApproved: transaction.isApproved,
+        hasAdminRight: this.auth.isAdmin(),
+        deletion: this.isDeleteMode
       }
     });
   }
 
   onSelectRow(event) {
     if (this.isDeleteMode) return;
-    if (event.type !== 'click') {
+    if (event.type !== 'dblclick') {
       return;
     }
 
@@ -93,6 +99,22 @@ export class TransactionListComponent implements OnInit {
   onSelect({ selected }) {
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
+  }
+
+  approve() {
+    const ids = this.selected.map(i => i.id);
+    if (!this.auth.isAdmin()) return;
+    const payload = {
+      "transactionIds": ids
+    };
+    this.apiService.putCall(`/transaction/approve`, payload)
+      .subscribe((v) => {
+        if (v.status === 200) {
+          this.commonService.openSnackBar(`Transaction(s) approved.`);
+          this.setPage({ offset: 0, pageSize: this.pageSize });
+          this.selected = [];
+        }
+      });
   }
 
   delete() {

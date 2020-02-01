@@ -22,6 +22,9 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  --theme-color: #313131;
+  --theme-color-tint: #363636;
 }
 
 .dark-backdrop {
@@ -48,6 +51,9 @@ body {
 }
 
 .datatable-body-cell-label {
+
+  user-select: none;
+
   span {
     display: block;
     white-space: nowrap;
@@ -117,9 +123,15 @@ body {
 .logout {
   height: 64px;
   border-radius: 0;
+
+  @media screen and (max-width:600px) {
+    height: 40px;
+    // padding-top: 16px;
+  }
 }
 
-.delete-button {
+.delete-button,
+.approve-button {
   background: transparent;
   width: 64px;
   height: 45px;
@@ -140,7 +152,7 @@ body {
   }
 
   &:hover {
-    background: #3c4daf;
+    background: var(--theme-color-tint);
   }
 
   @media screen and (max-width:600px) {
