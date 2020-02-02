@@ -16,17 +16,22 @@
 }
 
 
-.mat-toolbar.mat-primary {
+.mat-toolbar {
   position: sticky;
   top: 0;
   z-index: 1;
+  background-color: var(--theme-color);
+  color: #fff;
 }
 
 .info-wrapper {
   width: 100%;
+  color: #000000;
 
   .user-role {
     font-size: 12px;
+    line-height: 1;
+    color: rgba(#000000, 0.7);
   }
 }
 

@@ -30,17 +30,20 @@ export class PathListComponent implements OnInit {
   constructor(
     private commonService: CommonService,
     private apiService: ApiService,
-    private auth: AuthService,
+    public auth: AuthService,
     private _router: Router,
     private route: ActivatedRoute
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.route.queryParams.subscribe((q) => {
       this.isDeleteMode = q['mode'] === 'delete' && this.auth.isAdmin() ? true : false;
+      this.setPage({ offset: 0, pageSize: this.pageSize });
     });
   }
 
-  ngOnInit() {
-    this.setPage({ offset: 0, pageSize: this.pageSize });
+  displayCheck(row) {
+    return !row.hasAdminRight ? false : row.deletion ? true : !row.isActive;
   }
 
   setPage(pageInfo) {
@@ -62,7 +65,7 @@ export class PathListComponent implements OnInit {
 
   onSelectRow(event) {
     if (this.isDeleteMode) return;
-    if (event.type !== 'click') {
+    if (event.type !== 'dblclick') {
       return;
     }
 
@@ -80,7 +83,9 @@ export class PathListComponent implements OnInit {
         serialNo: this.commonService.getSerialNo(pageInfo, index),
         pathId: path.pathId,
         pathName: path.pathName,
-        isActive: path.isActive
+        isActive: path.isActive,
+        hasAdminRight: this.auth.isAdmin(),
+        deletion: this.isDeleteMode
       };
     });
   }
@@ -88,6 +93,23 @@ export class PathListComponent implements OnInit {
   onSelect({ selected }) {
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
+  }
+
+  approve() {
+    const ids = this.selected.map(i => i.pathId);
+    console.log(this.selected);
+    if (!this.auth.isAdmin()) return;
+    const payload = {
+      "pathIds": ids
+    };
+    this.apiService.putCall(`/path/activate`, payload)
+      .subscribe((v) => {
+        if (v.status === 200) {
+          this.commonService.openSnackBar(`Path(s) activated.`);
+          this.setPage({ offset: 0, pageSize: this.pageSize });
+          this.selected = [];
+        }
+      });
   }
 
   delete() {

@@ -124,7 +124,7 @@ export class HeaderNavbarComponent {
             ['dashboard', 'upload']
           );
           break;
-        
+
         case 'download':
           this._router.navigate(
             ['dashboard', 'download']

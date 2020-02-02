@@ -3,9 +3,10 @@
     <ngx-datatable class="material flat" [rows]="rows" [columnMode]="ColumnMode.flex" [headerHeight]="50"
       [loadingIndicator]="isLoading" [footerHeight]="'auto'" [rowHeight]="'auto'" [externalPaging]="true"
       [count]="totalElements" [limit]="pageSize" [offset]="pageNumber" (page)="setPage($event)"
-      [selectionType]="SelectionType.checkbox" [selectAllRowsOnPage]="false" (select)="onSelect($event)" (activate)="onSelectRow($event)">
-      <ngx-datatable-column *ngIf="isDeleteMode" [width]="30" [sortable]="false" [canAutoResize]="false"
-        [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
+      [displayCheck]="displayCheck" [selectionType]="SelectionType.checkbox" [selectAllRowsOnPage]="false"
+      (select)="onSelect($event)" (activate)="onSelectRow($event)">
+      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+        [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
       </ngx-datatable-column>
       <ngx-datatable-column name="#" [flexGrow]="0.5">
         <ng-template let-row="row" let-expanded='expanded' let-rowIndex='rowIndex' ngx-datatable-cell-template>
@@ -39,7 +40,14 @@
       </ngx-datatable-column>
     </ngx-datatable>
   </div>
-  <div class="delete-button" *ngIf="isDeleteMode && selected.length > 0" (click)="delete()" role="button">
+  <div class="approve-button" *ngIf="auth.isAdmin() && !isDeleteMode && selected.length > 0" (click)="approve()"
+    role="button">
+    <i class="material-icons">
+      check
+    </i>
+  </div>
+  <div class="delete-button" *ngIf="auth.isAdmin() && isDeleteMode && selected.length > 0" (click)="delete()"
+    role="button">
     <i class="material-icons">
       delete
     </i>
