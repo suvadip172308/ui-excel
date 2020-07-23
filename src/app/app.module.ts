@@ -26,7 +26,6 @@ import { environment } from '../environments/environment';
 import { HeaderNavbarComponent } from './components/header-navbar/header-navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RetailerListComponent } from './components/retailer-list/retailer-list.component';
-import { DataTableComponent } from './components/data-table/data-table.component';
 import { RetailerDetailsComponent } from './components/retailer-details/retailer-details.component';
 import { PathListComponent } from './components/path-list/path-list.component';
 import { PathDetailsComponent } from './components/path-details/path-details.component';
@@ -47,7 +46,6 @@ import { DownloadFileComponent } from './components/download-file/download-file.
     TransactionListComponent,
     HeaderNavbarComponent,
     RetailerListComponent,
-    DataTableComponent,
     RetailerDetailsComponent,
     PathListComponent,
     PathDetailsComponent,

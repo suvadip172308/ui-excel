@@ -27,6 +27,7 @@ export class TransactionListComponent implements OnInit {
   SelectionType = SelectionType;
 
   isDeleteMode: boolean;
+  showFiller = false;
 
   constructor(
     private commonService: CommonService,
@@ -83,22 +84,26 @@ export class TransactionListComponent implements OnInit {
     });
   }
 
-  onSelectRow(event) {
-    if (this.isDeleteMode) return;
-    if (event.type !== 'dblclick') {
-      return;
-    }
+  // onSelectRow(event) {
+  //   if (this.isDeleteMode) return;
+  //   if (event.type !== 'dblclick') {
+  //     return;
+  //   }
 
-    const id = event.row.id;
-    this._router.navigate(
-      ['dashboard', 'transaction', id],
-      { queryParams: { mode: 'display' } }
-    );
-  }
+  //   const id = event.row.id;
+  //   // this._router.navigate(
+  //   //   ['dashboard', 'transaction', id],
+  //   //   { queryParams: { mode: 'display' } }
+  //   // );
+
+  //   console.log("HI.....");
+  // }
 
   onSelect({ selected }) {
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
+
+    console.log("Hello ....");
   }
 
   approve() {

@@ -17,6 +17,7 @@ $excel-app-theme: mat-light-theme($excel-app-primary, $excel-app-accent, $excel-
 html,
 body {
   height: 100%;
+  overflow: visible;
 }
 
 body {
