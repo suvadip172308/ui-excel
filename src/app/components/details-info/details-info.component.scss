@@ -1,0 +1,12 @@
+.info-sidenav {
+  padding: 20px;
+  width: 250px;
+
+  .info-header {
+    text-align: right;
+  }
+
+  &:not(.mat-drawer-opened) {
+    display: none;
+  }
+}

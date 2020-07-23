@@ -1,19 +1,6 @@
 <!-- Add Sidenavbar -->
-
-<mat-drawer #drawer
-  class="example-sidenav"
-  fixedInViewport="true"
-  mode="push"
-  position="end">
-  <span class="material-icons"
-    (click)="drawer.close()">close</span>
-  <p>Auto-resizing sidenav</p>
-  <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-  <button (click)="showFiller = !showFiller" mat-raised-button>
-    Toggle extra text
-  </button>
-</mat-drawer>
-
+<app-details-info #infoComponent
+  [entityId]="entityId"></app-details-info>
 
 <div class="transaction-container">
   <div>
@@ -33,7 +20,7 @@
       (page)="setPage($event)"
       [selectionType]="SelectionType.single"
       [selectAllRowsOnPage]="false"
-      (select)="onSelect($event); drawer.open()">
+      (select)="onSelect($event)">
       <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
         [resizeable]="true" [headerCheckboxable]="true" [checkboxable]="true">
       </ngx-datatable-column>

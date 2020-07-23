@@ -33,6 +33,7 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
 import { OperatorListComponent } from './components/operator-list/operator-list.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { DownloadFileComponent } from './components/download-file/download-file.component';
+import { DetailsInfoComponent } from './components/details-info/details-info.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { DownloadFileComponent } from './components/download-file/download-file.
     OperatorListComponent,
     ConfirmDialogComponent,
     DownloadFileComponent,
+    DetailsInfoComponent,
   ],
   imports: [
     BrowserModule,

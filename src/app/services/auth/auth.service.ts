@@ -47,10 +47,4 @@ export class AuthService {
       return null;
     }
   }
-
-  isValidToken() {
-    const token = this.getToken();
-    const now = new Date().getTime() / 1000;
-    return now > jwt_decode(token).iat ? true : false;
-  }
 }

@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     const isAdmin = this.authService.isAdmin();
     this.store.dispatch(new AddUser({ userName, name, isAdmin }));
 
-    // this._router.navigate(['dashboard','transaction']);
+    this._router.navigate(['dashboard','transaction']);
   }
 }
 

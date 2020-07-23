@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 
@@ -7,6 +7,7 @@ import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { PAGE_SIZE } from '../../shared/const/conts';
 import { Transaction } from '../../models/common.model';
+import { DetailsInfoComponent } from '../details-info/details-info.component';
 
 @Component({
   selector: 'app-transaction-list',
@@ -14,6 +15,8 @@ import { Transaction } from '../../models/common.model';
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
+  @ViewChild('infoComponent', {static: false})
+  infoComponent: DetailsInfoComponent;
 
   isLoading: boolean = false;
   pageSize = PAGE_SIZE;
@@ -27,7 +30,7 @@ export class TransactionListComponent implements OnInit {
   SelectionType = SelectionType;
 
   isDeleteMode: boolean;
-  showFiller = false;
+  entityId: string;
 
   constructor(
     private commonService: CommonService,
@@ -103,7 +106,9 @@ export class TransactionListComponent implements OnInit {
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
 
-    console.log("Hello ....");
+    this.entityId = selected[0].id;
+
+    this.infoComponent.open();
   }
 
   approve() {
